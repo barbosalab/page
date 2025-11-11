@@ -8,24 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-      /* ------- Base ------- */
       html, body { overflow-x: hidden; }
       body { padding-top: 64px; }
 
-      /* Visually-hidden helper (for screen reader text) */
+      /* Hidden text for accessibility */
       .sr-only {
         position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-        overflow: hidden; clip: rect(0, 0, 1px, 1px); white-space: nowrap; border: 0;
+        overflow: hidden; clip: rect(0,0,1px,1px); white-space: nowrap; border: 0;
       }
 
-      /* ------- Top Nav ------- */
+      /* === Top Navigation === */
       .topnav {
-        position: fixed; inset: 0 0 auto 0;
+        position: fixed;
+        top: 0; left: 0; right: 0;
         z-index: 10000;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
         backdrop-filter: saturate(120%) blur(6px);
       }
+
       .topnav .inner {
         max-width: 960px;
         margin: 0 auto;
@@ -33,37 +34,32 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 18px;
         padding: 0 18px;
       }
 
-      /* Brand */
+      /* Logo and title */
       .brand { display: flex; align-items: center; gap: 10px; }
-      .brand img { height: 40px; width: auto; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
+      .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
       .brand a {
         display: flex; align-items: center; gap: 10px;
-        font-weight: 800; font-size: 1.5em; letter-spacing: .5px;
-        color: #fff; text-decoration: none; border: 0; outline: none;
+        font-weight: 800; font-size: 1.5em; color: #fff;
+        text-decoration: none;
       }
-      .topnav .brand a:hover,
-      .topnav .brand a:focus,
-      .topnav .brand a:active { color: #fff !important; border: none !important; outline: none !important; box-shadow: none !important; }
 
-      /* Desktop menu (inline) */
+      /* Desktop menu */
       .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
       .menu a {
-        display: block; padding: 6px 2px; text-decoration: none;
-        color: #fff; border-bottom: 2px solid transparent;
-        font-weight: 400; transition: color .3s ease, border-color .3s ease;
+        color: #fff; text-decoration: none;
+        padding: 6px 2px; border-bottom: 2px solid transparent;
+        transition: color .3s ease, border-color .3s ease;
       }
-      .menu a:hover { color: #FFD700 !important; border-color: #FFD700; }
+      .menu a:hover { color: #FFD700; border-color: #FFD700; }
 
       /* Hamburger (hidden on desktop) */
       .menu-toggle {
         display: none;
-        appearance: none; border: 0; background: transparent; color: #fff;
-        width: 44px; height: 44px; border-radius: 8px; cursor: pointer;
-        position: relative;
+        border: 0; background: transparent; color: #fff;
+        width: 44px; height: 44px; cursor: pointer; position: relative;
       }
       .menu-toggle .bar,
       .menu-toggle .bar::before,
@@ -79,45 +75,40 @@
       .topnav.open .menu-toggle .bar::before { top: 0; transform: rotate(45deg); }
       .topnav.open .menu-toggle .bar::after  { bottom: 0; transform: rotate(-45deg); }
 
-      /* ------- Mobile: right-side transparent column ------- */
+      /* === Mobile Styles === */
       @media (max-width: 768px) {
-        /* Show burger, hide inline menu baseline */
         .menu-toggle { display: block; }
-
-        /* Off-canvas column (transparent) */
         .menu {
           position: fixed;
           top: 0; right: 0; bottom: 0;
           width: 78%;
           max-width: 360px;
-
           display: flex;
-          flex-direction: column;   /* items stacked one under another */
-          gap: 14px;
-
-          background: transparent;  /* fully transparent panel */
-          backdrop-filter: none;
-          padding: 84px 24px 24px;  /* push list down from status/top bar */
+          flex-direction: column;      /* stack vertically */
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 22px;
+          background: transparent;     /* transparent background */
+          padding: 84px 32px 32px;
           transform: translateX(100%);
           transition: transform .3s ease;
           overflow-y: auto;
         }
         .topnav.open .menu { transform: translateX(0); }
 
-        /* White labels */
-        .menu li { list-style: none; }
+        /* List items vertically */
+        .menu li { list-style: none; width: 100%; }
         .menu a {
-          color: #ffffff;
+          color: #fff;
           text-decoration: none;
-          font-size: 1.15em;
+          font-size: 1.25em;
           font-weight: 600;
-          line-height: 1.2;
-          padding: 10px 0;
-          border: none;
+          display: block;
+          width: 100%;
         }
-        .menu a:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
+        .menu a:hover { color: #FFD700; }
 
-        /* Dim background so white text is legible */
+        /* Backdrop */
         .nav-backdrop {
           position: fixed;
           inset: 0;
@@ -128,26 +119,23 @@
         }
         .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-        /* Z layers */
         .topnav { z-index: 10001; }
         .menu { z-index: 10002; }
         .nav-backdrop { z-index: 10000; }
 
-        /* Brand tweaks */
         .brand img { height: 36px; }
-        .brand a { font-size: 1.25em; letter-spacing: .3px; }
+        .brand a { font-size: 1.25em; }
       }
 
-      /* Tiny phones */
       @media (max-width: 420px) {
         .menu { width: 85%; padding: 80px 20px 20px; }
-        .menu a { font-size: 1.07em; }
+        .menu a { font-size: 1.1em; }
       }
 
-      /* Header + Footer colors */
+      /* Header and footer */
       #header h1, #header p { color: #fff; }
       #header p { margin: .35em 0; line-height: 1.4; }
-      #footer .icons a { transition: color .3s ease; color: #fff; }
+      #footer .icons a { color: #fff; transition: color .3s ease; }
       #footer .icons a:hover { color: #FFD700; }
       #footer .copyright { color: #aaa; }
     </style>
@@ -163,13 +151,13 @@
           </a>
         </div>
 
-        <!-- Hamburger (three dashes) -->
+        <!-- Hamburger -->
         <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu">
           <span class="sr-only">Menu</span>
           <span class="bar"></span>
         </button>
 
-        <!-- Desktop inline menu (also becomes off-canvas on mobile) -->
+        <!-- Navigation links (stacked on mobile) -->
         <ul id="primary-menu" class="menu">
           <li><a href="projects.html">Projects</a></li>
           <li><a href="publications.html">Publications</a></li>
@@ -179,7 +167,6 @@
         </ul>
       </div>
     </nav>
-    <!-- Backdrop for mobile when menu is open -->
     <div class="nav-backdrop" hidden></div>
 
     <header id="header">
@@ -190,10 +177,10 @@
 
     <footer id="footer">
       <ul class="icons">
-        <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
-        <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-        <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"></a></li>
+        <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"></a></li>
+        <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"></a></li>
+        <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"></a></li>
       </ul>
       <ul class="copyright">
         <li>&copy; Barbosa Lab.</li>
@@ -202,8 +189,7 @@
     </footer>
 
     <script>
-      // Accessible hamburger + off-canvas column
-      (function () {
+      (function(){
         const nav = document.querySelector('.topnav');
         const btn = document.querySelector('.menu-toggle');
         const menu = document.getElementById('primary-menu');
@@ -213,7 +199,6 @@
           nav.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
           backdrop && backdrop.removeAttribute('hidden');
-          // lock background scroll on mobile
           document.documentElement.style.overflow = 'hidden';
           document.body.style.overflow = 'hidden';
         }
@@ -223,40 +208,17 @@
           backdrop && backdrop.setAttribute('hidden', '');
           document.documentElement.style.overflow = '';
           document.body.style.overflow = '';
-          btn.focus();
         }
 
         btn.addEventListener('click', () => {
-          if (nav.classList.contains('open')) closeMenu(); else openMenu();
+          nav.classList.contains('open') ? closeMenu() : openMenu();
         });
-
-        // Close when clicking the dimmed area
         backdrop && backdrop.addEventListener('click', closeMenu);
-
-        // Close with ESC
-        window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
-        });
-
-        // Close after selecting a link (mobile UX)
-        menu.addEventListener('click', (e) => {
-          if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) {
-            closeMenu();
-          }
+        window.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+        menu.addEventListener('click', e => {
+          if (e.target.closest('a') && window.matchMedia('(max-width:768px)').matches) closeMenu();
         });
       })();
     </script>
-
-    <script src="assets/js/main.js"></script>
-
-    <noscript>
-      <!-- No-JS fallback: show links inline and visible on mobile -->
-      <style>
-        @media (max-width:768px){
-          .menu { position: static !important; transform: none !important; width: auto !important; background: transparent !important; box-shadow: none !important; padding: 12px 0 !important; }
-          .nav-backdrop{ display:none !important; }
-        }
-      </style>
-    </noscript>
   </body>
 </html>
