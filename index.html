@@ -1,29 +1,20 @@
 <!DOCTYPE HTML>
-<!--
-  Eventually by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<html lang="en">
   <head>
-    <title>Barbosa Lab</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Barbosa Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Your theme stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" />
-    <!-- Font Awesome (X icon supported in 6.5+) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Font Awesome (X icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-    <!-- Custom style adjustments -->
     <style>
-      /* Keep your header’s two-line slogan tight */
-      #header p { margin: 0.15em 0; line-height: 1.2; }
-
-      /* Simple top nav that blends with HTML5 UP */
+      /* Top bar */
       .topnav {
         position: sticky; top: 0; z-index: 1000;
-        background: rgba(255,255,255,0.9);
+        background: #fff; border-bottom: 1px solid rgba(0,0,0,.08);
         backdrop-filter: saturate(130%) blur(4px);
-        border-bottom: 1px solid rgba(0,0,0,0.06);
       }
       .topnav .inner {
         max-width: 960px; margin: 0 auto; padding: 10px 18px;
@@ -32,116 +23,48 @@
       .topnav .brand { font-weight: 800; letter-spacing: .2px; }
       .topnav ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 16px; }
       .topnav a { text-decoration: none; color: inherit; padding: 6px 2px; border-bottom: 2px solid transparent; }
-      .topnav a:hover, .topnav a.active { color: #00c851; border-color: #00c851; }
+      .topnav a:hover { color: #00c851; border-color: #00c851; }
 
-      /* Section blocks to hold your content */
-      .section {
-        max-width: 960px; margin: 32px auto; padding: 0 18px;
-      }
-      .section h2 { margin: 0 0 12px; }
-      .muted { opacity: .75; }
+      /* Keep your header slogan neat */
+      #header p { margin: 0.15em 0; line-height: 1.2; }
 
-      /* Simple grid cards for quick layout */
-      .grid { display: grid; gap: 16px; }
-      @media (min-width: 700px) { .grid.cols-2 { grid-template-columns: repeat(2, 1fr); } .grid.cols-3 { grid-template-columns: repeat(3, 1fr); } }
-      .card { border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 14px; background: #fff; }
-
-      /* Footer hover color you had */
-      #footer .icons a { transition: color 0.3s ease; }
+      /* Footer hover color (kept) */
+      #footer .icons a { transition: color .3s ease; }
       #footer .icons a:hover { color: #00c851; }
 
-      /* Smooth anchor scroll */
-      html { scroll-behavior: smooth; }
+      /* Simple container for home content (optional) */
+      .container { max-width: 960px; margin: 32px auto; padding: 0 18px; }
     </style>
   </head>
   <body class="is-preload">
 
-    <!-- Header (kept) -->
+    <!-- Top Navigation -->
+    <nav class="topnav">
+      <div class="inner">
+        <div class="brand">Barbosa Lab</div>
+        <ul>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="conferences.html">Conferences</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="equipment.html">Equipment</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Header (kept from your template) -->
     <header id="header">
       <h1>Barbosa Lab 🌾🤖🛰️</h1>
       <p>A research & Extension team innovating</p>
       <p>data-driven farming for a sustainable future</p>
     </header>
 
-    <!-- Top Navigation added -->
-    <nav class="topnav">
-      <div class="inner">
-        <div class="brand">Barbosa Lab</div>
-        <ul>
-          <li><a href="#projects" class="active">Projects</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#conferences">Conferences</a></li>
-          <li><a href="#photos">Photos</a></li>
-          <li><a href="#equipment">Equipment</a></li>
-        </ul>
-      </div>
-    </nav>
+    <!-- (Optional) Home intro section -->
+    <div class="container">
+      <p>Welcome! Use the navigation above to explore our projects, publications, conferences, photos, and equipment.</p>
+    </div>
 
-    <!-- Sections (place your content inside) -->
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <p class="muted">Selected work across remote sensing, robotics, and decision support.</p>
-      <div class="grid cols-3">
-        <article class="card">
-          <h3>UAV Yield & Market Class (Onions)</h3>
-          <p class="muted">Multispectral + texture · Random Forest</p>
-          <p>Forecasting yield and market classes from UAV imagery and field data.</p>
-        </article>
-        <article class="card">
-          <h3>Robotic Mixing Station for Spraying Drones</h3>
-          <p class="muted">App control · Safety · Throughput</p>
-          <p>Automating mixing/logging to support aerial spraying operations.</p>
-        </article>
-        <article class="card">
-          <h3>Cellphone Imaging for Blueberry Quality</h3>
-          <p class="muted">Computer vision · Bayes + ML</p>
-          <p>Low-cost pipelines for quality assessment using mobile imagery.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="publications" class="section">
-      <h2>Publications</h2>
-      <ul>
-        <li><strong>Actuators (2025):</strong> Robotic system to support spraying drone operations.</li>
-        <li><strong>Smart Agricultural Technology (2025):</strong> UAV multispectral + texture to forecast onion yield & market class.</li>
-        <!-- Add more… -->
-      </ul>
-    </section>
-
-    <section id="conferences" class="section">
-      <h2>Conferences</h2>
-      <ul>
-        <li><strong>ASABE 2025:</strong> UAV-based onion yield & quality prediction.</li>
-        <li><strong>ICRA 2025:</strong> Specialty-crop robotics platforms.</li>
-      </ul>
-    </section>
-
-    <section id="photos" class="section">
-      <h2>Photos</h2>
-      <div class="grid cols-3">
-        <!-- Replace with your images -->
-        <div class="card"><img src="images/photo1.jpg" alt="Field UAV flight" style="width:100%;border-radius:8px"></div>
-        <div class="card"><img src="images/photo2.jpg" alt="Onion plots" style="width:100%;border-radius:8px"></div>
-        <div class="card"><img src="images/photo3.jpg" alt="Robotic mixing station" style="width:100%;border-radius:8px"></div>
-      </div>
-    </section>
-
-    <section id="equipment" class="section">
-      <h2>Equipment</h2>
-      <div class="grid cols-2">
-        <article class="card">
-          <h3>DJI Mavic 3 Multispectral</h3>
-          <p class="muted">RGB + Multispectral · RTK</p>
-        </article>
-        <article class="card">
-          <h3>Spraying Drone Platform</h3>
-          <p class="muted">Automated mixing · Flow meters · App control</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Footer (kept) -->
+    <!-- Footer (kept from your template) -->
     <footer id="footer">
       <ul class="icons">
         <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
@@ -155,25 +78,7 @@
       </ul>
     </footer>
 
-    <!-- Scripts -->
-    <!-- If your HTML5 UP main.js expects other deps, keep them; otherwise this is fine -->
+    <!-- Your theme’s JS (keep if used) -->
     <script src="assets/js/main.js"></script>
-
-    <!-- Small helper: mark nav link active based on scroll -->
-    <script>
-      const navLinks = [...document.querySelectorAll('.topnav a')];
-      const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-
-      function setActive() {
-        let current = sections[0]?.id || '';
-        for (const sec of sections) {
-          const top = sec.getBoundingClientRect().top;
-          if (top <= 100) current = sec.id;
-        }
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-      }
-      document.addEventListener('scroll', setActive, { passive: true });
-      setActive();
-    </script>
   </body>
 </html>
