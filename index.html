@@ -50,6 +50,15 @@
         letter-spacing: 0.5px;
         color: #ffffff;
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* ✅ Prevent hover underline or color change on the brand name */
+      .brand a:hover {
+        color: #ffffff;
+        border: none;
       }
 
       /* ===== Nav Links ===== */
@@ -61,7 +70,7 @@
         gap: 20px;
       }
 
-      .topnav a {
+      .topnav ul a {
         display: block;
         padding: 6px 2px;
         text-decoration: none;
@@ -71,8 +80,8 @@
         transition: color .3s ease, border-color .3s ease;
       }
 
-      .topnav a:hover {
-        color: #FFD700 !important;
+      .topnav ul a:hover {
+        color: #FFD700 !important;   /* gold hover */
         border-color: #FFD700;
       }
 
@@ -143,6 +152,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
