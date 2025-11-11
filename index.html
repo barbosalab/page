@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Theme stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" />
-    <!-- Font Awesome (X icon) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
@@ -15,8 +15,19 @@
         position: fixed;
         top: 0; left: 0; right: 0;
         z-index: 10000;
-        background: transparent; /* fully transparent */
-        border-bottom: 1px solid rgba(255,255,255,0.5); /* thin white line */
+        background: transparent;
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+      }
+
+      .topnav .inner {
+        max-width: 960px;
+        margin: 0 auto;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 18px;
       }
 
       /* ===== Brand (Logo + Lab name) ===== */
@@ -40,14 +51,7 @@
         text-decoration: none;
       }
 
-      .topnav .brand a {
-        font-weight: 800; /* lab name in bold */
-        font-size: 1.5em;
-        letter-spacing: .5px;
-        color: #ffffff; /* white brand text */
-        text-decoration: none;
-      }
-
+      /* ===== Nav Links ===== */
       .topnav ul {
         list-style: none;
         margin: 0;
@@ -60,16 +64,15 @@
         display: block;
         padding: 6px 2px;
         text-decoration: none;
-        color: #ffffff; /* white by default */
+        color: #ffffff;
         border-bottom: 2px solid transparent;
-        font-weight: normal; /* not bold */
+        font-weight: normal;
         transition: color .3s ease, border-color .3s ease;
       }
 
-      /* === GOLD hover === */
       .topnav a:hover {
-        color: #FFD700 !important;       /* gold */
-        border-color: #FFD700;           /* gold underline */
+        color: #FFD700 !important;
+        border-color: #FFD700;
       }
 
       /* Push content below fixed nav */
@@ -78,7 +81,7 @@
       /* ===== Header text ===== */
       #header h1, #header p { color: #fff; }
       #header p {
-        margin: 0.35em 0;   /* balanced spacing between lines */
+        margin: 0.35em 0;
         line-height: 1.4;
       }
 
@@ -87,7 +90,7 @@
         transition: color .3s ease;
         color: #fff;
       }
-      #footer .icons a:hover { color: #FFD700; } /* gold hover */
+      #footer .icons a:hover { color: #FFD700; }
       #footer .copyright { color: #aaa; }
     </style>
   </head>
@@ -96,7 +99,12 @@
     <!-- Transparent TOP NAV -->
     <nav class="topnav">
       <div class="inner">
-        <div class="brand"><a href="index.html">Barbosa Lab</a></div>
+        <!-- ✅ Brand logo + text -->
+        <div class="brand">
+          <img src="assets/images/logo.png" alt="Barbosa Lab Logo">
+          <a href="index.html">Barbosa Lab</a>
+        </div>
+
         <ul>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="publications.html">Publications</a></li>
@@ -132,6 +140,3 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-
-
-
