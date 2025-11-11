@@ -15,7 +15,7 @@
         position: fixed;
         top: 0; left: 0; right: 0;
         z-index: 10000;
-        background: transparent;              /* fully transparent */
+        background: transparent; /* fully transparent */
         border-bottom: 1px solid rgba(255,255,255,0.5); /* thin white line */
       }
 
@@ -33,7 +33,7 @@
       .topnav .brand a {
         font-weight: 800;
         letter-spacing: .2px;
-        color: #ffffff;                     /* white brand text */
+        color: #ffffff; /* white brand text */
         text-decoration: none;
       }
 
@@ -49,29 +49,31 @@
         display: block;
         padding: 6px 2px;
         text-decoration: none;
-        color: #ffffff;                     /* white by default */
+        color: #ffffff; /* white by default */
         border-bottom: 2px solid transparent;
         font-weight: 600;
         transition: color .3s ease, border-color .3s ease;
       }
 
       .topnav a:hover {
-        color: #FFD700;                     /* gold on hover */
+        color: #FFD700; /* gold hover */
         border-color: #FFD700;
       }
 
-      /* Adjust body padding so content isn't hidden under nav */
+      /* Push content below fixed nav */
       body { padding-top: 64px; }
 
-      /* Keep your header text readable on dark background */
+      /* ===== Header text ===== */
       #header h1, #header p { color: #fff; }
+      #header p {
+        margin: 0.35em 0;     /* restore a bit more space between lines */
+        line-height: 1.4;     /* improved vertical rhythm */
+      }
 
-      /* Footer hover color */
+      /* Footer style */
       #footer .icons a { transition: color .3s ease; color:#fff; }
       #footer .icons a:hover { color: #FFD700; }
       #footer .copyright { color:#aaa; }
-
-      .container { max-width: 960px; margin: 32px auto; padding: 0 18px; color:#fff; }
     </style>
   </head>
   <body class="is-preload">
@@ -96,11 +98,6 @@
       <p>A research & Extension team innovating</p>
       <p>data-driven farming for a sustainable future</p>
     </header>
-
-    <!-- Home intro -->
-    <div class="container">
-      <p>Welcome! Use the navigation above to explore our projects, publications, conferences, photos, and equipment.</p>
-    </div>
 
     <!-- Footer -->
     <footer id="footer">
