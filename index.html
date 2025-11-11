@@ -46,11 +46,11 @@
 
       /* Hamburger toggle */
       .menu-toggle {
-        display: none;
+        display: none; /* hidden by default */
         border: none; background: none; color: #fff;
         font-size: 1.6rem; cursor: pointer;
         width: 44px; height: 44px;
-        display: flex; align-items: center; justify-content: center;
+        align-items: center; justify-content: center;
         position: relative;
         z-index: 10004;
       }
@@ -59,6 +59,7 @@
       @media (max-width: 768px) {
         .menu-toggle { display: flex; }
 
+        /* hide desktop menu initially */
         .menu {
           position: fixed;
           top: 60px !important; /* below navbar */
@@ -94,6 +95,12 @@
         /* Adjust logo */
         .brand img { height: 36px; }
         .brand a { font-size: 1.25em; }
+      }
+
+      /* Tiny phones */
+      @media (max-width: 420px) {
+        .menu { width: 85%; padding: 80px 20px 20px; }
+        .menu a { font-size: 1.07em; }
       }
 
       #header h1, #header p { color: #fff; }
