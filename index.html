@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
+      html, body { overflow-x: hidden; }
+
       .topnav {
         position: fixed;
         top: 0; left: 0; right: 0;
@@ -26,31 +28,17 @@
         padding: 0 18px;
       }
 
-      /* Brand (logo + name) */
+      /* Brand (logo + name in nav) */
       .brand { display: flex; align-items: center; gap: 10px; }
       .brand img { height: 40px; width: auto; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
       .brand a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: normal;
-        font-size: 1.5em;
-        letter-spacing: 0.5px;
-        color: #ffffff;
-        text-decoration: none;
-        outline: none;                 /* remove default browser outline */
-        border: none;                  /* no border */
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.5em; letter-spacing: 0.5px;
+        color: #ffffff; text-decoration: none; outline: none; border: none;
       }
-      
-      /* ✅ Prevent hover or focus color and outline */
       .topnav .brand a:hover,
       .topnav .brand a:focus,
-      .topnav .brand a:active {
-        color: #ffffff !important;     /* stay white */
-        border: none !important;       /* no underline */
-        outline: none !important;      /* no focus dotted line */
-        box-shadow: none !important;   /* no shadow effect */
-      }
+      .topnav .brand a:active { color: #ffffff !important; border: none !important; outline: none !important; box-shadow: none !important; }
 
       /* Menu links */
       .topnav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
@@ -59,35 +47,96 @@
         color: #ffffff; border-bottom: 2px solid transparent;
         font-weight: normal; transition: color .3s ease, border-color .3s ease;
       }
-      .topnav ul a:hover {
-        color: #FFD700 !important;     /* gold hover */
-        border-color: #FFD700;         /* gold underline */
-      }
+      .topnav ul a:hover { color: #FFD700 !important; border-color: #FFD700; }
 
+      /* Keep content below fixed nav */
       body { padding-top: 64px; }
 
-      /* ✅ Adds equal side padding for header & footer content */
+      /* Align header & footer with navbar container */
       #header, #footer {
         max-width: 960px;
-        margin: 0 left;
-        padding: 0 100px;
+        margin: 0 auto;
+        padding: 0 18px;
         text-align: left;
+        position: relative;
       }
-      /* Header logo above the lab name (in page body) */
+
+      /* Header logo bigger and to the right on desktop */
       #header .header-logo {
-        display: block;
-        height: 300px;        /* adjust as needed */
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 220px;        /* desktop size */
         width: auto;
-        margin: 0 0 20px 0;   /* space between logo and title */
-        filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
+        opacity: 0.9;
+        filter: drop-shadow(0 0 8px rgba(0,0,0,0.4));
       }
-      
-      #header h1, #header p { color: #fff; }
+
+      #header h1, #header p { color: #fff; position: relative; z-index: 2; }
       #header p { margin: 0.35em 0; line-height: 1.4; }
 
+      /* Footer */
       #footer .icons a { transition: color .3s ease; color: #fff; }
       #footer .icons a:hover { color: #FFD700; }
       #footer .copyright { color: #aaa; }
+
+      /* =========================
+         RESPONSIVE ADJUSTMENTS
+         ========================= */
+
+      /* Tablet: make things breathe a bit */
+      @media (max-width: 992px) {
+        .topnav .inner { gap: 12px; }
+        .brand a { font-size: 1.3em; }
+        .topnav ul { gap: 14px; }
+        #header .header-logo { height: 180px; }
+      }
+
+      /* Phone: stack/resize for small screens */
+      @media (max-width: 768px) {
+        .topnav .inner {
+          height: auto;
+          flex-wrap: wrap;
+          padding-top: 8px;
+          padding-bottom: 8px;
+          gap: 10px;
+        }
+        .brand img { height: 32px; }
+        .brand a { font-size: 1.2em; letter-spacing: 0.3px; }
+
+        .topnav ul {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .topnav ul a { font-size: 0.95em; padding: 6px 4px; }
+
+        body { padding-top: 80px; } /* a bit more room for the wrapped nav */
+
+        /* Header content: center and make logo inline (no absolute) */
+        #header {
+          text-align: center;
+        }
+        #header .header-logo {
+          position: static;      /* remove absolute */
+          display: block;
+          margin: 0 auto 14px auto;
+          height: 120px;         /* phone size */
+          max-width: 80vw;       /* keep it inside the screen */
+          width: auto;
+        }
+        #header h1, #header p {
+          position: static;
+        }
+      }
+
+      /* Very small phones */
+      @media (max-width: 420px) {
+        .topnav ul { gap: 8px; }
+        .topnav ul a { font-size: 0.9em; }
+        #header .header-logo { height: 100px; max-width: 85vw; }
+      }
     </style>
   </head>
   <body class="is-preload">
@@ -112,9 +161,9 @@
     </nav>
 
     <header id="header">
-    
+      <!-- Desktop: big logo to the right; Phone: centered, smaller -->
       <img src="images/logo.png" alt="Barbosa Lab Logo" class="header-logo" />
-      
+
       <h1>Barbosa Lab 🌾🤖🛰️</h1>
       <p>A Research & Extension team innovating</p>
       <p>data-driven farming for a sustainable future</p>
@@ -136,22 +185,3 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
