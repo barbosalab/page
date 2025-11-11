@@ -126,16 +126,22 @@
           white-space: normal !important;
         }
         .menu a:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
-
-        /* Dim background so white text stays readable */
+        
+        /* Darker dimmed background behind the transparent menu */
         .nav-backdrop {
-          position: fixed; inset: 0;
-          background: rgba(0,0,0,0.45);
-          opacity: 0; pointer-events: none;
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.75); /* increased darkness */
+          opacity: 0;
+          pointer-events: none;
           transition: opacity .3s ease;
           z-index: 10000;
         }
-        .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
+        .topnav.open + .nav-backdrop {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
 
         /* Layering */
         .topnav { z-index: 10001; }
@@ -265,3 +271,4 @@
     </noscript>
   </body>
 </html>
+
