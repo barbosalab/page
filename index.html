@@ -35,7 +35,7 @@
         color: #fff; text-decoration: none;
       }
 
-      /* Menu links (both desktop & mobile) */
+      /* Menu links (desktop & mobile) */
       .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
       .menu a {
         color: #fff;
@@ -46,14 +46,15 @@
         transition: color 0.3s ease, border-color 0.3s ease;
       }
       .menu a:hover {
-        color: #FFD700;            /* gold text on hover */
-        border-color: #FFD700;     /* optional underline glow */
+        color: #FFD700 !important;       /* force gold text */
+        border-color: #FFD700 !important;/* gold underline */
       }
 
       /* Hamburger toggle */
       .menu-toggle {
         display: none; /* hidden on desktop */
-        border: none; background: none; color: #fff;
+        border: none; background: none;
+        color: #fff !important;
         font-size: 1.6rem; cursor: pointer;
         width: 44px; height: 44px;
         align-items: center; justify-content: center;
@@ -61,7 +62,9 @@
         z-index: 10004;
         transition: color 0.3s ease;
       }
-      .menu-toggle:hover { color: #FFD700; } /* gold hover on hamburger/X */
+      .menu-toggle:hover {
+        color: #FFD700 !important; /* gold icon on hover */
+      }
 
       /* Right-side column for mobile */
       @media (max-width: 768px) {
@@ -83,7 +86,7 @@
 
         .menu li { list-style: none; }
         .menu a {
-          color: #fff;
+          color: #fff !important;
           font-size: 1.2em;
           font-weight: 600;
           text-decoration: none;
@@ -91,7 +94,7 @@
           transition: color 0.3s ease;
         }
         .menu a:hover {
-          color: #FFD700;          /* gold on hover for mobile menu too */
+          color: #FFD700 !important; /* force gold hover on mobile too */
         }
 
         /* Dark background overlay (under the list) */
