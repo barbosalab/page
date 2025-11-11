@@ -1,55 +1,230 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Barbosa Lab</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Barbosa Lab — Tabs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <style>
-      /* Fallback so white text is visible while background loads */
-      body { background-color: #0f0f0f; }
+  <style>
+    :root {
+      --accent: #0aa84f;
+      --text: #111;
+      --muted: #666;
+      --border: #e5e5e5;
+      --bg: #fff;
+      --tab-bg: #f7f7f8;
+    }
 
-      #header p {
-        margin: 0.15em 0;
-        line-height: 1.2;
+    body {
+      margin: 0;
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: 2rem;
+    }
+    .subtitle { color: var(--muted); margin-bottom: 24px; }
+
+    /* Tabs */
+    .tabs {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: clip;
+      background: var(--bg);
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+
+    .tablist {
+      display: flex;
+      gap: 2px;
+      flex-wrap: wrap;
+      background: var(--tab-bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tablist button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--muted);
+      border-bottom: 3px solid transparent;
+      transition: color .15s ease, border-color .15s ease, background .15s ease;
+    }
+
+    .tablist button[aria-selected="true"] {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: #fff;
+    }
+
+    .tabpanel {
+      display: none;
+      padding: 20px;
+    }
+    .tabpanel[aria-hidden="false"] { display: block; }
+
+    /* Nice lists */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fff;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .muted { color: var(--muted); font-size: .95rem; }
+
+    /* Images grid (Photos) */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .grid img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .tablist { gap: 0; }
+      .tablist button { flex: 1 0 50%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Barbosa Lab</h1>
+    <div class="subtitle">Data-driven farming for a sustainable future</div>
+
+    <section class="tabs" id="lab-tabs">
+      <!-- Tab buttons -->
+      <div class="tablist" role="tablist" aria-label="Lab sections">
+        <button role="tab" id="tab-projects" aria-controls="panel-projects" aria-selected="true">Projects</button>
+        <button role="tab" id="tab-publications" aria-controls="panel-publications" aria-selected="false">Publications</button>
+        <button role="tab" id="tab-conferences" aria-controls="panel-conferences" aria-selected="false">Conferences</button>
+        <button role="tab" id="tab-photos" aria-controls="panel-photos" aria-selected="false">Photos</button>
+        <button role="tab" id="tab-equipment" aria-controls="panel-equipment" aria-selected="false">Equipment</button>
+      </div>
+
+      <!-- Panels -->
+      <div id="panel-projects" class="tabpanel" role="tabpanel" aria-labelledby="tab-projects" aria-hidden="false">
+        <div class="cards">
+          <article class="card">
+            <h3>UAV Multispectral Yield Forecasting</h3>
+            <div class="muted">Onions · Random Forest · Texture + Vegetation Indices</div>
+            <p>Predicting market class and yield using UAV imagery and ML pipelines.</p>
+          </article>
+          <article class="card">
+            <h3>Robotic Support for Spraying Drones</h3>
+            <div class="muted">Autonomous mixing station · Mobile app · Safety</div>
+            <p>Closed-loop system improving efficiency, coverage, and operator safety.</p>
+          </article>
+        </div>
+      </div>
+
+      <div id="panel-publications" class="tabpanel" role="tabpanel" aria-labelledby="tab-publications" aria-hidden="true">
+        <ul>
+          <li><strong>Actuators (2025):</strong> Designing and implementing a robotic system to support spraying drone operations.</li>
+          <li><strong>Smart Agricultural Technology (2025):</strong> Forecasting yield and market class of Vidalia sweet onions with UAV multispectral + texture features.</li>
+          <!-- Add more items… -->
+        </ul>
+      </div>
+
+      <div id="panel-conferences" class="tabpanel" role="tabpanel" aria-labelledby="tab-conferences" aria-hidden="true">
+        <ul>
+          <li><strong>ASABE 2025:</strong> UAV-based onion yield and quality prediction.</li>
+          <li><strong>IEEE ICRA 2025:</strong> Robotic systems for specialty crops.</li>
+        </ul>
+      </div>
+
+      <div id="panel-photos" class="tabpanel" role="tabpanel" aria-labelledby="tab-photos" aria-hidden="true">
+        <div class="grid">
+          <!-- Replace with your images -->
+          <img src="images/photo1.jpg" alt="Field UAV flight" />
+          <img src="images/photo2.jpg" alt="Onion plots" />
+          <img src="images/photo3.jpg" alt="Robotic mixing station" />
+        </div>
+      </div>
+
+      <div id="panel-equipment" class="tabpanel" role="tabpanel" aria-labelledby="tab-equipment" aria-hidden="true">
+        <div class="cards">
+          <article class="card">
+            <h3>DJI Mavic 3 Multispectral</h3>
+            <p class="muted">RGB + Multispectral · RTK</p>
+          </article>
+          <article class="card">
+            <h3>Spraying Drone Platform</h3>
+            <p class="muted">Automated mixing · Flow meters · App control</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Accessible Tabs with hash support
+    (function () {
+      const tablist = document.querySelector('.tablist');
+      const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+      const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+
+      function activateTab(tab, push = false) {
+        tabs.forEach((t, i) => {
+          const selected = (t === tab);
+          t.setAttribute('aria-selected', selected);
+          panels[i].setAttribute('aria-hidden', String(!selected));
+        });
+        const panelId = tab.getAttribute('aria-controls');
+        const hash = panelId.replace('panel-', '');
+        if (push) history.replaceState(null, '', '#' + hash);
       }
-      #footer .icons a { transition: color 0.3s ease; }
-      #footer .icons a:hover { color: #00c851; }
-    </style>
-  </head>
-  <body class="is-preload">
 
-    <!-- Background container for slideshow -->
-    <div id="bg"></div>
+      // Clicks
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => activateTab(tab, true));
+      });
 
-    <!-- Header -->
-    <header id="header">
-      <h1>Barbosa Lab 🌾🤖🛰️</h1>
-      <p>A research and Extension team innovating</p>
-      <p>data-driven farming for a sustainable future</p>
-    </header>
+      // Keyboard navigation (Left/Right/Home/End)
+      tablist.addEventListener('keydown', e => {
+        const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+        let ni = i;
+        if (e.key === 'ArrowRight') ni = (i + 1) % tabs.length;
+        if (e.key === 'ArrowLeft')  ni = (i - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home')       ni = 0;
+        if (e.key === 'End')        ni = tabs.length - 1;
+        if (ni !== i) { e.preventDefault(); tabs[ni].focus(); activateTab(tabs[ni], true); }
+      });
 
-    <!-- Footer -->
-    <footer id="footer">
-      <ul class="icons">
-        <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
-        <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-        <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; Barbosa Lab.</li>
-        <li>Credits: <a href="https://barbosalab.github.io/page/#">Barbosa Lab</a></li>
-      </ul>
-    </footer>
-
-    <!-- Required scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+      // Open tab from URL hash (e.g., #publications)
+      function openFromHash() {
+        const hash = (location.hash || '').replace('#', '');
+        if (!hash) return;
+        const tab = document.querySelector(`#tab-${hash}`);
+        if (tab) activateTab(tab, false);
+      }
+      window.addEventListener('hashchange', openFromHash);
+      openFromHash(); // run on load
+    })();
+  </script>
+</body>
 </html>
