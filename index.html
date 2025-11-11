@@ -4,26 +4,60 @@
     <meta charset="utf-8" />
     <title>Barbosa Lab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Your theme stylesheet -->
+    <!-- Theme stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <!-- Font Awesome (X icon) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-      /* Top bar */
-      .topnav {
-        position: sticky; top: 0; z-index: 1000;
-        background: #fff; border-bottom: 1px solid rgba(0,0,0,.08);
+      /* ===== Top bar (fixed at very top) ===== */
+      .topnav{
+        position: fixed !important; /* force above hero */
+        top: 0; left: 0; right: 0;
+        z-index: 10000 !important;  /* over template header */
+        background: #ffffffcc;       /* translucent white */
         backdrop-filter: saturate(130%) blur(4px);
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        color: #0b0b0b;
       }
-      .topnav .inner {
-        max-width: 960px; margin: 0 auto; padding: 10px 18px;
-        display: flex; align-items: center; gap: 18px;
+      .topnav .inner{
+        max-width: 960px;
+        margin: 0 auto;
+        height: 60px;               /* consistent height */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 18px;
       }
-      .topnav .brand { font-weight: 800; letter-spacing: .2px; }
-      .topnav ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 16px; }
-      .topnav a { text-decoration: none; color: inherit; padding: 6px 2px; border-bottom: 2px solid transparent; }
-      .topnav a:hover { color: #00c851; border-color: #00c851; }
+      .topnav .brand a{
+        font-weight: 800;
+        letter-spacing: .2px;
+        color: #0b0b0b !important;
+        text-decoration: none;
+      }
+      .topnav ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 16px;
+      }
+      .topnav a{
+        display: block;
+        padding: 6px 2px;
+        text-decoration: none;
+        color: #0b0b0b !important;     /* ensure visible on white bar */
+        border-bottom: 2px solid transparent;
+        font-weight: 600;
+      }
+      .topnav a:hover{
+        color: #00c851 !important;
+        border-color: #00c851;
+      }
+
+      /* Push page content down so fixed nav doesn't cover it */
+      body{ padding-top: 64px !important; }
 
       /* Keep your header slogan neat */
       #header p { margin: 0.15em 0; line-height: 1.2; }
@@ -38,10 +72,10 @@
   </head>
   <body class="is-preload">
 
-  <!-- ✅ Move the Top Navigation ABOVE the header -->
+  <!-- TOP NAV -->
   <nav class="topnav">
     <div class="inner">
-      <div class="brand">Barbosa Lab</div>
+      <div class="brand"><a href="index.html">Barbosa Lab</a></div>
       <ul>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="publications.html">Publications</a></li>
@@ -52,34 +86,33 @@
     </div>
   </nav>
 
-  <!-- Header (now below the navbar) -->
+  <!-- HERO HEADER -->
   <header id="header">
     <h1>Barbosa Lab 🌾🤖🛰️</h1>
     <p>A research & Extension team innovating</p>
     <p>data-driven farming for a sustainable future</p>
   </header>
 
-    <!-- (Optional) Home intro section -->
-    <div class="container">
-      <p>Welcome! Use the navigation above to explore our projects, publications, conferences, photos, and equipment.</p>
-    </div>
+  <!-- (Optional) Home intro section -->
+  <div class="container">
+    <p>Welcome! Use the navigation above to explore our projects, publications, conferences, photos, and equipment.</p>
+  </div>
 
-    <!-- Footer (kept from your template) -->
-    <footer id="footer">
-      <ul class="icons">
-        <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
-        <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-        <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; Barbosa Lab.</li>
-        <li>Credits: <a href="https://barbosalab.github.io/page/#">Barbosa Lab</a></li>
-      </ul>
-    </footer>
+  <!-- Footer -->
+  <footer id="footer">
+    <ul class="icons">
+      <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
+      <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+      <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
+    </ul>
+    <ul class="copyright">
+      <li>&copy; Barbosa Lab.</li>
+      <li>Credits: <a href="https://barbosalab.github.io/page/#">Barbosa Lab</a></li>
+    </ul>
+  </footer>
 
-    <!-- Your theme’s JS (keep if used) -->
-    <script src="assets/js/main.js"></script>
+  <!-- Theme JS -->
+  <script src="assets/js/main.js"></script>
   </body>
 </html>
-
