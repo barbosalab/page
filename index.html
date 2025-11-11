@@ -55,9 +55,10 @@
         transition: color .3s ease, border-color .3s ease;
       }
 
+      /* === GOLD hover === */
       .topnav a:hover {
-        color: #FFD700; /* gold hover */
-        border-color: #FFD700;
+        color: #FFD700 !important;       /* gold */
+        border-color: #FFD700;           /* gold underline */
       }
 
       /* Push content below fixed nav */
@@ -66,14 +67,17 @@
       /* ===== Header text ===== */
       #header h1, #header p { color: #fff; }
       #header p {
-        margin: 0.35em 0;     /* restore a bit more space between lines */
-        line-height: 1.4;     /* improved vertical rhythm */
+        margin: 0.35em 0;   /* balanced spacing between lines */
+        line-height: 1.4;
       }
 
-      /* Footer style */
-      #footer .icons a { transition: color .3s ease; color:#fff; }
-      #footer .icons a:hover { color: #FFD700; }
-      #footer .copyright { color:#aaa; }
+      /* ===== Footer style ===== */
+      #footer .icons a {
+        transition: color .3s ease;
+        color: #fff;
+      }
+      #footer .icons a:hover { color: #FFD700; } /* gold hover */
+      #footer .copyright { color: #aaa; }
     </style>
   </head>
   <body class="is-preload">
@@ -95,7 +99,7 @@
     <!-- HERO HEADER -->
     <header id="header">
       <h1>Barbosa Lab 🌾🤖🛰️</h1>
-      <p>A research & Extension team innovating</p>
+      <p>A Research & Extension team innovating</p>
       <p>data-driven farming for a sustainable future</p>
     </header>
 
