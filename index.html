@@ -15,7 +15,7 @@
         position: fixed;
         top: 0; left: 0; right: 0;
         z-index: 10000;
-        background: transparent;
+        background: rgba(0,0,0,0.15); /* fully transparent */
         border-bottom: 1px solid rgba(255,255,255,0.5);
       }
 
@@ -38,9 +38,10 @@
       }
 
       .brand img {
-        height: 100px;                    /* ✅ adjust logo size here */
+        height: 80px;                    /* ✅ adjust logo size here */
         width: auto;
         vertical-align: middle;
+        filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); /* adds soft shadow */
       }
 
       .brand a {
@@ -142,6 +143,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
