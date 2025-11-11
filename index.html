@@ -8,104 +8,148 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-      /* --- Base resets --- */
+      /* ------- Base ------- */
       html, body { overflow-x: hidden; }
       body { padding-top: 64px; }
 
-      /* --- Top Nav --- */
+      /* Visually-hidden helper (for screen reader text) */
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 1px, 1px); white-space: nowrap; border: 0;
+      }
+
+      /* ------- Top Nav ------- */
       .topnav {
-        position: fixed; inset: 0 0 auto 0; /* top:0; left/right full width */
+        position: fixed; inset: 0 0 auto 0;
         z-index: 10000;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
         backdrop-filter: saturate(120%) blur(6px);
       }
       .topnav .inner {
-        max-width: 960px; margin: 0 auto; height: 60px;
-        display: flex; align-items: center; justify-content: space-between;
-        gap: 18px; padding: 0 18px;
+        max-width: 960px;
+        margin: 0 auto;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 18px;
       }
 
-      /* Brand (logo + name) */
+      /* Brand */
       .brand { display: flex; align-items: center; gap: 10px; }
       .brand img { height: 40px; width: auto; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
       .brand a {
         display: flex; align-items: center; gap: 10px;
         font-weight: 800; font-size: 1.5em; letter-spacing: .5px;
-        color: #fff; text-decoration: none; outline: none; border: none;
+        color: #fff; text-decoration: none; border: 0; outline: none;
       }
       .topnav .brand a:hover,
       .topnav .brand a:focus,
-      .topnav .brand a:active { color:#fff !important; border:none !important; outline:none !important; box-shadow:none !important; }
+      .topnav .brand a:active { color: #fff !important; border: none !important; outline: none !important; box-shadow: none !important; }
 
-      /* Desktop menu */
-      .menu { list-style:none; margin:0; padding:0; display:flex; gap:20px; }
+      /* Desktop menu (inline) */
+      .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
       .menu a {
-        display:block; padding:6px 2px; text-decoration:none;
-        color:#fff; border-bottom:2px solid transparent;
-        font-weight:400; transition: color .3s ease, border-color .3s ease;
+        display: block; padding: 6px 2px; text-decoration: none;
+        color: #fff; border-bottom: 2px solid transparent;
+        font-weight: 400; transition: color .3s ease, border-color .3s ease;
       }
-      .menu a:hover { color:#FFD700 !important; border-color:#FFD700; }
+      .menu a:hover { color: #FFD700 !important; border-color: #FFD700; }
 
-      /* Hamburger button (hidden on desktop) */
+      /* Hamburger (hidden on desktop) */
       .menu-toggle {
-        display:none;
-        appearance:none; border:0; background:transparent; color:#fff;
-        width:44px; height:44px; border-radius:8px; cursor:pointer;
-        position:relative;
+        display: none;
+        appearance: none; border: 0; background: transparent; color: #fff;
+        width: 44px; height: 44px; border-radius: 8px; cursor: pointer;
+        position: relative;
       }
       .menu-toggle .bar,
       .menu-toggle .bar::before,
       .menu-toggle .bar::after {
-        content:""; display:block; position:absolute; left:10px; right:10px;
-        height:2px; background:#fff; transition:transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease;
+        content: ""; display: block; position: absolute; left: 10px; right: 10px;
+        height: 2px; background: #fff;
+        transition: transform .25s ease, opacity .2s ease, top .25s ease, bottom .25s ease;
       }
-      .menu-toggle .bar { top:50%; transform:translateY(-50%); }
-      .menu-toggle .bar::before { top:-8px; }
-      .menu-toggle .bar::after  { bottom:-8px; }
-      .topnav.open .menu-toggle .bar { opacity:0; }
-      .topnav.open .menu-toggle .bar::before { top:0; transform:rotate(45deg); }
-      .topnav.open .menu-toggle .bar::after  { bottom:0; transform:rotate(-45deg); }
+      .menu-toggle .bar { top: 50%; transform: translateY(-50%); }
+      .menu-toggle .bar::before { top: -8px; }
+      .menu-toggle .bar::after  { bottom: -8px; }
+      .topnav.open .menu-toggle .bar { opacity: 0; }
+      .topnav.open .menu-toggle .bar::before { top: 0; transform: rotate(45deg); }
+      .topnav.open .menu-toggle .bar::after  { bottom: 0; transform: rotate(-45deg); }
 
-      /* --- Mobile off-canvas panel --- */
+      /* ------- Mobile: right-side transparent column ------- */
       @media (max-width: 768px) {
-        body { padding-top: 64px; }
+        /* Show burger, hide inline menu baseline */
+        .menu-toggle { display: block; }
 
-        /* Make the logo slightly smaller on tiny screens */
-        .brand img { height: 36px; }
-        .brand a { font-size: 1.25em; letter-spacing: .3px; }
-
-        /* Show hamburger, hide desktop menu */
-        .menu-toggle { display:block; }
+        /* Off-canvas column (transparent) */
         .menu {
-          position: fixed; top: 60px; right: 0; bottom: 0; width: 78%;
-          max-width: 340px;
-          display: block; padding: 16px 20px;
-          background: rgba(0,0,0,0.92);
-          box-shadow: -12px 0 24px rgba(0,0,0,0.35);
-          transform: translateX(100%); transition: transform .3s ease;
+          position: fixed;
+          top: 0; right: 0; bottom: 0;
+          width: 78%;
+          max-width: 360px;
+
+          display: flex;
+          flex-direction: column;   /* items stacked one under another */
+          gap: 14px;
+
+          background: transparent;  /* fully transparent panel */
+          backdrop-filter: none;
+          padding: 84px 24px 24px;  /* push list down from status/top bar */
+          transform: translateX(100%);
+          transition: transform .3s ease;
           overflow-y: auto;
         }
-        .menu li { margin: 6px 0; }
-        .menu a { padding: 10px 0; font-size: 1.05em; border-bottom: none; }
-
-        /* Slide-in when open */
         .topnav.open .menu { transform: translateX(0); }
 
-        /* Optional dimmed page backdrop when menu is open */
+        /* White labels */
+        .menu li { list-style: none; }
+        .menu a {
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 1.15em;
+          font-weight: 600;
+          line-height: 1.2;
+          padding: 10px 0;
+          border: none;
+        }
+        .menu a:focus-visible { outline: 2px solid #FFD700; outline-offset: 2px; }
+
+        /* Dim background so white text is legible */
         .nav-backdrop {
-          position: fixed; inset: 60px 0 0 0; background: rgba(0,0,0,0.3);
-          opacity: 0; pointer-events: none; transition: opacity .3s ease;
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.45);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity .3s ease;
         }
         .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
+
+        /* Z layers */
+        .topnav { z-index: 10001; }
+        .menu { z-index: 10002; }
+        .nav-backdrop { z-index: 10000; }
+
+        /* Brand tweaks */
+        .brand img { height: 36px; }
+        .brand a { font-size: 1.25em; letter-spacing: .3px; }
+      }
+
+      /* Tiny phones */
+      @media (max-width: 420px) {
+        .menu { width: 85%; padding: 80px 20px 20px; }
+        .menu a { font-size: 1.07em; }
       }
 
       /* Header + Footer colors */
-      #header h1, #header p { color:#fff; }
-      #header p { margin: .35em 0; line-height:1.4; }
-      #footer .icons a { transition: color .3s ease; color:#fff; }
-      #footer .icons a:hover { color:#FFD700; }
-      #footer .copyright { color:#aaa; }
+      #header h1, #header p { color: #fff; }
+      #header p { margin: .35em 0; line-height: 1.4; }
+      #footer .icons a { transition: color .3s ease; color: #fff; }
+      #footer .icons a:hover { color: #FFD700; }
+      #footer .copyright { color: #aaa; }
     </style>
   </head>
   <body class="is-preload">
@@ -119,13 +163,13 @@
           </a>
         </div>
 
-        <!-- Hamburger button (three dashes) -->
+        <!-- Hamburger (three dashes) -->
         <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu">
-          <span class="sr-only" style="position:absolute;clip:rect(1px,1px,1px,1px);width:1px;height:1px;overflow:hidden;">Menu</span>
+          <span class="sr-only">Menu</span>
           <span class="bar"></span>
         </button>
 
-        <!-- Primary menu -->
+        <!-- Desktop inline menu (also becomes off-canvas on mobile) -->
         <ul id="primary-menu" class="menu">
           <li><a href="projects.html">Projects</a></li>
           <li><a href="publications.html">Publications</a></li>
@@ -158,7 +202,7 @@
     </footer>
 
     <script>
-      // Accessible hamburger toggle
+      // Accessible hamburger + off-canvas column
       (function () {
         const nav = document.querySelector('.topnav');
         const btn = document.querySelector('.menu-toggle');
@@ -169,7 +213,7 @@
           nav.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
           backdrop && backdrop.removeAttribute('hidden');
-          // Prevent background scroll on mobile
+          // lock background scroll on mobile
           document.documentElement.style.overflow = 'hidden';
           document.body.style.overflow = 'hidden';
         }
@@ -179,34 +223,39 @@
           backdrop && backdrop.setAttribute('hidden', '');
           document.documentElement.style.overflow = '';
           document.body.style.overflow = '';
+          btn.focus();
         }
 
         btn.addEventListener('click', () => {
           if (nav.classList.contains('open')) closeMenu(); else openMenu();
         });
 
-        // Close when clicking backdrop
+        // Close when clicking the dimmed area
         backdrop && backdrop.addEventListener('click', closeMenu);
 
-        // Close on ESC
+        // Close with ESC
         window.addEventListener('keydown', (e) => {
           if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
         });
 
-        // Basic focus management: return focus to button when menu closes
-        menu.addEventListener('keydown', (e) => {
-          if (e.key === 'Tab' && !nav.classList.contains('open')) {
-            btn.focus();
+        // Close after selecting a link (mobile UX)
+        menu.addEventListener('click', (e) => {
+          if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) {
+            closeMenu();
           }
         });
       })();
     </script>
 
     <script src="assets/js/main.js"></script>
+
     <noscript>
-      <!-- No-JS fallback: keep menu visible -->
+      <!-- No-JS fallback: show links inline and visible on mobile -->
       <style>
-        @media (max-width:768px){ .menu { position:static !important; transform:none !important; width:auto !important; background:transparent !important; box-shadow:none !important; } .nav-backdrop{ display:none !important; } }
+        @media (max-width:768px){
+          .menu { position: static !important; transform: none !important; width: auto !important; background: transparent !important; box-shadow: none !important; padding: 12px 0 !important; }
+          .nav-backdrop{ display:none !important; }
+        }
       </style>
     </noscript>
   </body>
