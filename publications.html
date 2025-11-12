@@ -215,29 +215,32 @@
       .muted { color: #bfbfbf; }
 
 
-      /* --- Keep header just below the fixed topnav --- */
+     
+
+      /* Keep header just below the fixed topnav */
       :root {
-        --nav-h: 60px;   /* must match .topnav .inner height */
-        --top-gap: 12px; /* tiny breathing room below the nav */
+        --nav-h: 60px;            /* matches .topnav .inner height */
+        --nav-border: 1px;        /* .topnav bottom border */
+        --top-gap: 10px;          /* breathing room below the bar */
       }
       
-      /* Make sure the nav actually uses that height */
+      /* Actual spacer block height = nav + border + gap */
+      .nav-spacer { height: calc(var(--nav-h) + var(--nav-border) + var(--top-gap)); }
+      
+      /* Ensure the nav really is that height */
       .topnav .inner { height: var(--nav-h); }
       
-      /* Push the whole page down by nav height + small gap */
-      body { padding-top: calc(var(--nav-h) + var(--top-gap)); }
+      /* Remove old offsets so we don't double-space */
+      body { padding-top: 0 !important; }
+      #header { margin-top: 0 !important; }
       
-      /* Remove extra manual offset on the page header */
-      #header { margin-top: 0; }
+      /* If you jump to #anchors near the top, keep them visible */
+      [id] { scroll-margin-top: calc(var(--nav-h) + var(--nav-border) + var(--top-gap)); }
       
-      /* Optional: if you jump to anchors near the top, keep them visible */
-      [id] { scroll-margin-top: calc(var(--nav-h) + var(--top-gap)); }
-      
-      /* Mobile can use the same values; tweak only if you want a bigger gap */
+      /* Optional tweak on phones */
       @media (max-width: 768px) {
-        :root { --top-gap: 10px; }
+        :root { --top-gap: 12px; }
       }
-
 
      
 
@@ -248,9 +251,9 @@
 
   <body class="is-preload">
     <!-- Top navigation -->
-    <nav class="topnav" role="navigation" aria-label="Primary">
-      <div class="inner">
-        <div class="brand">
+    <nav class="topnav" role="navigation" aria-label="Primary"> ... </nav>
+      <div class="nav-spacer" aria-hidden="true"></div>
+        <div class="nav-backdrop" hidden></div>
           <a href="index.html">
             <img src="images/logo.png" alt="Barbosa Lab Logo" />
             <span>Barbosa Lab</span>
