@@ -233,27 +233,37 @@
 
 
   
-/* === Force large logo on all devices === */
-#header .header-logo {
+/* === Force big logo everywhere, with mobile override === */
+/* Desktop default */
+#header img.header-logo {
+  display: block;
   width: auto;
-  height: 300px; /* big on desktop */
-  margin-bottom: 12px;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
-  transition: height 0.3s ease;
+  height: 300px !important;   /* your desktop size */
+  max-height: none !important; /* ignore any theme max-heights */
+  max-width: 90vw;             /* avoid spilling off very narrow screens */
 }
 
-/* Keep it big on phones too */
-@media (max-width: 1000px) {
-  #header .header-logo {
-    height: 200px !important; /* big on mobile */
+/* Tablets */
+@media (max-width: 991.98px) {
+  #header img.header-logo {
+    height: 240px !important;
   }
 }
 
+/* Phones */
+@media (max-width: 768px) {
+  #header img.header-logo {
+    height: 200px !important;  /* your phone size */
+  }
+}
+
+/* Small phones (optional – keep same as phones) */
 @media (max-width: 480px) {
-  #header .header-logo {
-    height: 130px !important; /* still large on small phones */
+  #header img.header-logo {
+    height: 200px !important;
   }
 }
+
 
 
 
@@ -417,6 +427,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
