@@ -231,13 +231,34 @@
   justify-content: center;
 }
 
+/* === Responsive logo sizing (large on desktop, scales on mobile) === */
 #header .header-logo {
   width: auto;
-  height: clamp(70px, 20vw, 120px); /* scales with screen width */
+  height: 120px;  /* big and clear on desktop */
   margin-bottom: 10px;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
   transition: height 0.3s ease;
 }
+
+/* Adjust for tablets and phones */
+@media (max-width: 992px) {
+  #header .header-logo {
+    height: 100px; /* medium on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  #header .header-logo {
+    height: 85px;  /* smaller on regular phones */
+  }
+}
+
+@media (max-width: 480px) {
+  #header .header-logo {
+    height: 75px;  /* smallest phones */
+  }
+}
+
 
 #header h1 {
   margin-bottom: 0.3em;
@@ -399,6 +420,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
