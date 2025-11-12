@@ -1,345 +1,348 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Publications · Barbosa Lab</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <head>
+    <meta charset="utf-8" />
+    <title>Barbosa Lab — Publications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  <style>
-    /* ------- Base ------- */
-    html, body { overflow-x: hidden; }
-    body { padding-top: 64px; }
+    <style>
+      /* ------- Base (copied from home to keep layout identical) ------- */
+      html, body { overflow-x: hidden; }
+      body { padding-top: 64px; padding-bottom: 160px; } /* bottom pad so fixed footer doesn't cover content */
 
-    /* Top navigation (same as your index) */
-    .topnav {
-      position: fixed; inset: 0 0 auto 0;
-      z-index: 10003;
-      background: rgba(0,0,0,0.15);
-      border-bottom: 1px solid rgba(255,255,255,0.5);
-      backdrop-filter: saturate(120%) blur(6px);
-    }
-    .topnav .inner {
-      max-width: 960px; margin: 0 auto; height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 18px; padding: 0 18px;
-    }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
-    .brand a { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.5em; color: #fff; text-decoration: none; }
-    .topnav .brand a, .topnav .brand a:visited,
-    .topnav .brand a:hover, .topnav .brand a:focus, .topnav .brand a:active {
-      color:#fff !important; text-decoration:none !important; border:none !important; outline:none;
-    }
-
-    .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
-    .menu a {
-      color: #fff; text-decoration: none; padding: 6px 2px; border-bottom: 2px solid transparent;
-      font-weight: 500; transition: color .3s, border-color .3s;
-    }
-    .menu a:hover { color:#FFD700 !important; border-color:#FFD700 !important; }
-
-    .menu-toggle {
-      display: none; border: none !important; background: transparent !important; color: #fff !important;
-      font-size: 1.6rem; cursor: pointer; width: 44px; height: 44px;
-      align-items: center; justify-content: center; position: relative; z-index: 10004;
-      -webkit-appearance: none; appearance: none; -webkit-tap-highlight-color: transparent;
-      transition: color .3s ease;
-    }
-    .menu-toggle:hover { color:#FFD700 !important; }
-    .menu-toggle:focus, .menu-toggle:active, .menu-toggle:focus-visible { outline:none !important; background:transparent !important; box-shadow:none !important; }
-
-    @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
-      .menu {
-        position: fixed; top: 60px !important; right:0; bottom:0; width:78%; max-width:360px;
-        display:flex; flex-direction:column; gap:16px; background:transparent; padding:40px 24px 24px;
-        transform: translateX(100%); transition: transform .3s ease; z-index: 10002 !important;
+      /* Top navigation */
+      .topnav {
+        position: fixed; inset: 0 0 auto 0;
+        z-index: 10003;
+        background: rgba(0,0,0,0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+        backdrop-filter: saturate(120%) blur(6px);
       }
-      .topnav.open .menu { transform: translateX(0); }
-      .menu li { list-style:none; }
-      .menu a { color:#fff !important; font-size:1.2em; font-weight:600; border:none; }
-      .menu a:hover { color:#FFD700 !important; }
-      .nav-backdrop { position: fixed; inset:0; background: rgba(0,0,0,0.75); opacity:0; pointer-events:none; transition: opacity .3s; z-index:9999 !important; }
-      .topnav.open + .nav-backdrop { opacity:1; pointer-events:auto; }
-      .brand img { height:36px; }
-      .brand a { font-size:1.25em; }
-    }
+      .topnav .inner {
+        max-width: 960px; margin: 0 auto; height: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 18px; padding: 0 18px;
+      }
 
-    /* Page Header */
-    #page-header {
-      text-align: center;
-      max-width: 960px;
-      margin: 110px auto 20px;
-      padding: 0 18px;
-    }
-    #page-header h1 {
-      color: #fff; margin: 0 0 6px; font-size: 2rem; font-weight: 700;
-    }
-    #page-header p {
-      color: #cccccc; margin: 0.25em 0; line-height: 1.35;
-    }
+      /* Brand */
+      .brand { display: flex; align-items: center; gap: 10px; }
+      .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
+      .brand a {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.5em;
+        color: #fff; text-decoration: none;
+      }
+      .topnav .brand a,
+      .topnav .brand a:visited,
+      .topnav .brand a:hover,
+      .topnav .brand a:focus,
+      .topnav .brand a:active {
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border: none !important;
+        outline: none;
+      }
 
-    /* Publications container */
-    .pubs {
-      max-width: 960px;
-      margin: 10px auto 120px;
-      padding: 0 18px;
-    }
+      /* Menu links */
+      .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+      .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 2px;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        transition: color 0.3s ease, border-color 0.3s ease;
+      }
+      .menu a:hover { color: #FFD700 !important; border-color: #FFD700 !important; }
 
-    /* Year heading */
-    .pub-year {
-      color: #FDB719;            /* your gold */
-      font-weight: 700;
-      margin: 26px 0 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      padding-bottom: 6px;
-      font-size: 1.15rem;
-    }
+      /* Hamburger toggle */
+      .menu-toggle {
+        display: none;
+        border: none !important;
+        background: transparent !important;
+        color: #fff !important;
+        font-size: 1.6rem; cursor: pointer;
+        width: 44px; height: 44px;
+        align-items: center; justify-content: center;
+        position: relative;
+        z-index: 10004;
+        transition: color 0.3s ease;
+        -webkit-appearance: none; appearance: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .menu-toggle:hover { color: #FFD700 !important; }
+      .menu-toggle:focus,
+      .menu-toggle:active,
+      .menu-toggle:focus-visible {
+        outline: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+      .menu-toggle i { background: transparent !important; box-shadow: none !important; pointer-events: none; }
 
-    /* Publication card */
-    .pub {
-      padding: 12px 0;
-      border-bottom: 1px dashed rgba(255,255,255,0.12);
-    }
-    .pub:last-child { border-bottom: none; }
+      /* Right-side column for mobile */
+      @media (max-width: 768px) {
+        .menu-toggle { display: flex; }
+        .menu {
+          position: fixed;
+          top: 60px !important;
+          right: 0; bottom: 0;
+          width: 78%; max-width: 360px;
+          display: flex; flex-direction: column; gap: 16px;
+          background: transparent;
+          padding: 40px 24px 24px;
+          transform: translateX(100%);
+          transition: transform 0.3s ease;
+          z-index: 10002 !important;
+        }
+        .topnav.open .menu { transform: translateX(0); }
+        .menu li { list-style: none; }
+        .menu a {
+          color: #fff !important;
+          font-size: 1.2em;
+          font-weight: 600;
+          text-decoration: none;
+          border: none;
+          transition: color 0.3s ease;
+        }
+        .menu a:hover { color: #FFD700 !important; }
 
-    .pub-title {
-      color: #fff;
-      font-weight: 600;
-      margin: 0 0 2px;
-      line-height: 1.35;
-    }
-    .pub-meta {
-      color: #bfbfbf;
-      margin: 0 0 6px;
-      font-size: 0.95em;
-    }
-    .pub-actions {
-      display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-    }
-    .pub-actions a, .pub-actions button {
-      color: #fff; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.35);
-      padding: 6px 10px; border-radius: 8px; font-size: 0.9em;
-      background: transparent; cursor: pointer;
-      transition: border-color .25s, color .25s, background-color .25s;
-    }
-    .pub-actions a:hover, .pub-actions button:hover {
-      color: #000; background: #FFD700; border-color: #FFD700;
-    }
+        /* Dark background overlay (under the list) */
+        .nav-backdrop {
+          position: fixed; inset: 0;
+          background: rgba(0, 0, 0, 0.75);
+          opacity: 0; pointer-events: none;
+          transition: opacity 0.3s ease;
+          z-index: 9999 !important;
+        }
+        .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-    /* Footer (same centered, fixed at bottom if you used that) */
-    #footer {
-      width: 100%; text-align: center; padding: 40px 0;
-      display: flex; flex-direction: column; align-items:center; justify-content:center;
-    }
-    #footer .icons {
-      display: flex; justify-content:center; align-items:center; gap:25px;
-      margin-bottom:12px; list-style:none; padding:0;
-    }
-    #footer .icons a { color:#fff; transition: color .3s; font-size:1.3em; }
-    #footer .icons a:hover { color:#FFD700; }
-    #footer .copyright {
-      color:#aaa; list-style:none; margin:0; padding:0; text-align:center;
-    }
-    #footer .copyright li { display:block; font-size:0.95em; margin:3px 0; }
-    #footer .copyright li::before, #footer .copyright li::after { content:"" !important; display:none !important; }
-  </style>
-</head>
-<body>
+        /* Adjust logo text scale */
+        .brand img { height: 36px; }
+        .brand a { font-size: 1.25em; }
+      }
 
-  <!-- NAV -->
-  <nav class="topnav" role="navigation" aria-label="Primary">
-    <div class="inner">
-      <div class="brand">
-        <a href="index.html">
-          <img src="images/logo.png" alt="Barbosa Lab Logo" />
-          <span>Barbosa Lab</span>
-        </a>
+      @media (max-width: 420px) {
+        .menu { width: 85%; padding: 80px 20px 20px; }
+        .menu a { font-size: 1.07em; }
+      }
+
+      /* === Fixed centered footer at bottom === */
+      #footer {
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        text-align: center; padding: 25px 0;
+        background: rgba(0,0,0,0.25); backdrop-filter: blur(6px);
+        border-top: 1px solid rgba(255,255,255,0.3);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        z-index: 999;
+      }
+      #footer .icons {
+        display: flex; justify-content: center; align-items: center;
+        gap: 25px; margin-bottom: 8px; list-style: none; padding: 0;
+      }
+      #footer .icons a { color: #fff; font-size: 1.3em; transition: color 0.3s ease; }
+      #footer .icons a:hover { color: #FFD700; }
+      #footer .copyright { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
+      #footer .copyright li {
+        display: block !important; margin: 3px 0 !important; padding: 0 !important;
+        border: 0 !important; background: none !important; box-shadow: none !important;
+      }
+      #footer .copyright li::before,
+      #footer .copyright li::after { content: "" !important; display: none !important; }
+      #footer .copyright li:not(:first-child) { border-left: 0 !important; padding-left: 0 !important; margin-left: 0 !important; }
+
+      /* === Page header (replaces large logo area) === */
+      #header {
+        text-align: center;
+        margin-top: 100px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 0 18px;
+      }
+      #header h1 {
+        margin-bottom: 0.3em;
+        color: #ffffff;
+        font-size: 2.5em;
+        font-weight: 700;
+      }
+      #header .subtitle-gold { color: #FDB719 !important; font-size: 1.1em; font-weight: 500; margin: 0.3em 0; }
+      #header .subtitle-small { color: #bfbfbf !important; font-size: 0.95em; font-weight: 400; margin-top: 4px; letter-spacing: 0.3px; }
+
+      @media (max-width: 768px) {
+        #header { margin-top: 80px; }
+        #header h1 { font-size: 1.8em; }
+        #header .subtitle-gold { font-size: 1em; }
+        #header .subtitle-small { font-size: 0.9em; }
+      }
+
+      /* === Publications content === */
+      .container { max-width: 960px; margin: 28px auto 0; padding: 0 18px 40px; }
+      .year-group { margin: 28px 0 14px; }
+      .year-group h2 {
+        color: #fff; font-size: 1.3em; font-weight: 700; margin: 0 0 10px;
+        border-left: 4px solid #FDB719; padding-left: 10px;
+      }
+
+      .pub-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+      .pub {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 12px;
+        padding: 16px;
+        backdrop-filter: blur(4px);
+      }
+      .pub .title {
+        color: #fff; font-weight: 700; line-height: 1.35; margin: 0 0 6px; font-size: 1.05em;
+      }
+      .pub .meta {
+        color: #dcdcdc; font-size: 0.95em; margin: 0 0 6px;
+      }
+      .pub .venue { color: #bfbfbf; font-size: 0.92em; }
+      .pub .doi a {
+        color: #FDB719; text-decoration: none; border-bottom: 1px dotted rgba(253,183,25,0.5);
+      }
+      .pub .doi a:hover { color: #FFD700; border-bottom-color: transparent; }
+
+      /* small utility */
+      .muted { color: #bfbfbf; }
+    </style>
+  </head>
+
+  <body class="is-preload">
+    <!-- Top navigation -->
+    <nav class="topnav" role="navigation" aria-label="Primary">
+      <div class="inner">
+        <div class="brand">
+          <a href="index.html">
+            <img src="images/logo.png" alt="Barbosa Lab Logo" />
+            <span>Barbosa Lab</span>
+          </a>
+        </div>
+
+        <!-- Hamburger / Close Toggle -->
+        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu" title="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Menu -->
+        <ul id="primary-menu" class="menu">
+          <li><a href="team.html">Team</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="publications.html" style="border-color:#FFD700;color:#FFD700;">Publications</a></li>
+          <li><a href="equipment.html">Equipment</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about.html">Contact</a></li>
+        </ul>
       </div>
+    </nav>
+    <div class="nav-backdrop" hidden></div>
 
-      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu" title="Open menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+    <!-- Page Header (same spacing/styling as home header) -->
+    <header id="header">
+      <h1>Publications</h1>
+      <p class="subtitle-gold">Advancing precision agriculture through open, rigorous, and applied research.</p>
+      <p class="subtitle-small">Explore peer-reviewed articles, data-driven methods, and field-validated results.</p>
+    </header>
 
-      <ul id="primary-menu" class="menu">
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="publications.html" aria-current="page">Publications</a></li>
-        <li><a href="conferences.html">Conferences</a></li>
-        <li><a href="photos.html">Photos</a></li>
-        <li><a href="equipment.html">Equipment</a></li>
+    <!-- Content -->
+    <main class="container" id="content">
+      <!-- 2025 -->
+      <section class="year-group" aria-label="Publications in 2025">
+        <h2>2025</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">Designing and implementing a robotic system to support spraying drone operations</div>
+            <div class="meta">Barbosa Júnior, M. R.; Santos, R. G.; Sales, L. A.; Martins, J. V. S.; Santos, J. G.; Oliveira, L. P.</div>
+            <div class="venue">Actuators</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/act14080365" target="_blank" rel="noopener">10.3390/act14080365</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Forecasting yield and market class of Vidalia sweet onions: A UAV-based multispectral and texture data-driven approach</div>
+            <div class="meta">Barbosa Júnior, M. R.; Sales, L. A.; Santos, R. G.; Vargas, R. B. S.; Oliveira, L. P.</div>
+            <div class="venue">Smart Agricultural Technology</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.atech.2025.100808" target="_blank" rel="noopener">10.1016/j.atech.2025.100808</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Add more year groups below as needed -->
+      <!-- Example structure (uncomment and fill):
+      <section class="year-group" aria-label="Publications in 2024">
+        <h2>2024</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">[Paper title]</div>
+            <div class="meta">[Authors]</div>
+            <div class="venue">[Journal / Conference]</div>
+            <div class="doi">DOI: <a href="[doi link]" target="_blank" rel="noopener">[doi]</a></div>
+          </li>
+        </ul>
+      </section>
+      -->
+    </main>
+
+    <!-- Footer (identical to home) -->
+    <footer id="footer">
+      <ul class="icons">
+        <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
+        <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
       </ul>
-    </div>
-  </nav>
-  <div class="nav-backdrop" hidden></div>
+      <ul class="copyright">
+        <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
+        <li>Website Developed by Marcelo Barbosa.</li>
+      </ul>
+    </footer>
 
-  <!-- PAGE HEADER -->
-  <section id="page-header">
-    <h1>Publications</h1>
-    <p class="subtitle-gold" style="color:#FDB719">Innovating precision agriculture through interdisciplinary research.</p>
-  </section>
+    <!-- Same JS for mobile menu -->
+    <script>
+      (function () {
+        const nav = document.querySelector('.topnav');
+        const btn = document.querySelector('.menu-toggle');
+        const icon = btn.querySelector('i');
+        const menu = document.getElementById('primary-menu');
+        const backdrop = document.querySelector('.nav-backdrop');
 
-  <!-- PUBLICATIONS LIST -->
-  <main class="pubs" id="pubs"></main>
-
-  <!-- FOOTER -->
-  <footer id="footer">
-    <ul class="icons">
-      <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
-      <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-      <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-      <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-    </ul>
-    <ul class="copyright">
-      <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
-      <li>Website Developed by Marcelo Barbosa</li>
-    </ul>
-  </footer>
-
-  <!-- MENU JS -->
-  <script>
-    (function () {
-      const nav = document.querySelector('.topnav');
-      const btn = document.querySelector('.menu-toggle');
-      const icon = btn.querySelector('i');
-      const menu = document.getElementById('primary-menu');
-      const backdrop = document.querySelector('.nav-backdrop');
-
-      function lockScroll(lock) {
-        document.documentElement.style.overflow = lock ? 'hidden' : '';
-        document.body.style.overflow = lock ? 'hidden' : '';
-      }
-      function openMenu() {
-        nav.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-        btn.setAttribute('aria-label', 'Close menu');
-        btn.title = 'Close menu';
-        icon.classList.replace('fa-bars', 'fa-xmark');
-        backdrop && backdrop.removeAttribute('hidden');
-        lockScroll(true);
-      }
-      function closeMenu() {
-        nav.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.setAttribute('aria-label', 'Open menu');
-        btn.title = 'Open menu';
-        icon.classList.replace('fa-xmark', 'fa-bars');
-        backdrop && backdrop.setAttribute('hidden', '');
-        lockScroll(false);
-      }
-      btn.addEventListener('click', (e) => { e.preventDefault(); nav.classList.contains('open') ? closeMenu() : openMenu(); });
-      backdrop && backdrop.addEventListener('click', closeMenu);
-      window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(); });
-      menu.addEventListener('click', (e) => { if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) closeMenu(); });
-    })();
-  </script>
-
-  <!-- PUBLICATIONS DATA + RENDER -->
-  <script>
-    // 1) Add your publications here.
-    //    Use: { year, title, authors, journal, doi }
-    const publications = [
-      {
-        year: 2025,
-        title: "Designing and implementing a robotic system to support spraying drone operations",
-        authors: "Barbosa Júnior, M. R.; Santos, R. G.; Sales, L. A.; Martins, J. V. S.; Santos, J. G.; Oliveira, L. P.",
-        journal: "Actuators",
-        doi: "10.3390/act14080365"
-      },
-      {
-        year: 2025,
-        title: "Forecasting yield and market class of Vidalia sweet onions: A UAV-based multispectral and texture data-driven approach",
-        authors: "Barbosa Júnior, M. R.; Sales, L. A.; Santos, R. G.; Vargas, R. B. S.; Oliveira, L. P.",
-        journal: "Smart Agricultural Technology",
-        doi: "10.1016/j.atech.2025.100808"
-      },
-      // Add more like this:
-      // { year: 2024, title: "Your Title", authors: "A; B; C", journal: "Journal Name", doi: "10.xxxx/xxxxx" },
-    ];
-
-    // 2) Helper: group by year (desc)
-    function groupByYear(items) {
-      const map = new Map();
-      for (const p of items) {
-        if (!map.has(p.year)) map.set(p.year, []);
-        map.get(p.year).push(p);
-      }
-      // sort years desc
-      return Array.from(map.entries()).sort((a,b) => b[0] - a[0]);
-    }
-
-    // 3) Render
-    function renderPublications() {
-      const container = document.getElementById('pubs');
-      const groups = groupByYear(publications);
-      container.innerHTML = "";
-
-      for (const [year, items] of groups) {
-        const h = document.createElement('h2');
-        h.className = 'pub-year';
-        h.textContent = year;
-        container.appendChild(h);
-
-        items.forEach(p => {
-          const art = document.createElement('article');
-          art.className = 'pub';
-          art.setAttribute('itemscope', '');
-          art.setAttribute('itemtype', 'https://schema.org/ScholarlyArticle');
-
-          const title = document.createElement('h3');
-          title.className = 'pub-title';
-          title.setAttribute('itemprop', 'name');
-          title.textContent = p.title;
-
-          const meta = document.createElement('p');
-          meta.className = 'pub-meta';
-          meta.innerHTML =
-            `<span itemprop="author">${p.authors}</span>. ` +
-            `<em itemprop="isPartOf">${p.journal}</em>. ` +
-            `<span itemprop="datePublished">${p.year}</span>.`;
-
-          const actions = document.createElement('div');
-          actions.className = 'pub-actions';
-
-          if (p.doi) {
-            const doiLink = document.createElement('a');
-            doiLink.href = `https://doi.org/${p.doi}`;
-            doiLink.target = "_blank";
-            doiLink.rel = "noopener";
-            doiLink.textContent = "DOI";
-            doiLink.setAttribute('itemprop', 'identifier');
-            actions.appendChild(doiLink);
-          }
-
-          const bibBtn = document.createElement('button');
-          bibBtn.type = "button";
-          bibBtn.textContent = "Copy BibTeX";
-          bibBtn.addEventListener('click', () => {
-            const bibtex = `@article{${(p.authors.split(';')[0] || 'Barbosa').trim().toLowerCase().replace(/[^a-z]/g,'')}${p.year},
-  title = {${p.title}},
-  author = {${p.authors}},
-  journal = {${p.journal}},
-  year = {${p.year}},
-  doi = {${p.doi || ''}}
-}`;
-            navigator.clipboard.writeText(bibtex).then(() => {
-              bibBtn.textContent = "Copied!";
-              setTimeout(() => { bibBtn.textContent = "Copy BibTeX"; }, 1200);
-            });
-          });
-          actions.appendChild(bibBtn);
-
-          art.appendChild(title);
-          art.appendChild(meta);
-          art.appendChild(actions);
-          container.appendChild(art);
+        function lockScroll(lock) {
+          document.documentElement.style.overflow = lock ? 'hidden' : '';
+          document.body.style.overflow = lock ? 'hidden' : '';
+        }
+        function openMenu() {
+          nav.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.setAttribute('aria-label', 'Close menu');
+          btn.title = 'Close menu';
+          icon.classList.replace('fa-bars', 'fa-xmark');
+          backdrop && backdrop.removeAttribute('hidden');
+          lockScroll(true);
+        }
+        function closeMenu() {
+          nav.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'Open menu');
+          btn.title = 'Open menu';
+          icon.classList.replace('fa-xmark', 'fa-bars');
+          backdrop && backdrop.setAttribute('hidden', '');
+          lockScroll(false);
+        }
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          nav.classList.contains('open') ? closeMenu() : openMenu();
         });
-      }
-    }
+        backdrop && backdrop.addEventListener('click', closeMenu);
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
+        });
+        menu.addEventListener('click', (e) => {
+          if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) closeMenu();
+        });
+      })();
+    </script>
 
-    renderPublications();
-  </script>
-</body>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
