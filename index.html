@@ -253,14 +253,22 @@
   font-size: 1.5em;
 }
 
-/* Smaller second subtitle line */
-#header .subtitle-small {
-  font-size: 0.8em;         /* smaller text */
-  color: #bfbfbf;           /* slightly lighter grey (optional) */
-  margin-top: 4px;          /* a little gap above it */
-  letter-spacing: 0.3px;    /* improves readability */
+/* === Header subtitle colors and sizes === */
+#header .subtitle-gold {
+  color: #FDB719 !important;   /* golden mission line */
+  font-size: 1em;              /* keep normal size */
+  font-weight: 500;
+  margin: 0.15em 0;
+  line-height: 1.3;
 }
 
+#header .subtitle-small {
+  color: #bfbfbf !important;   /* grey tech line */
+  font-size: 0.85em;           /* smaller font */
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
 
 /* === Responsive tweaks === */
 @media (max-width: 768px) {
@@ -319,8 +327,7 @@
 
     <header id="header">
       <img src="images/logofront.png" alt="Barbosa Lab Logo" class="header-logo" />
-      <p>A Research & Extension team innovating data-driven farming for a sustainable future.</p>
-      <p </p>
+      <p class="subtitle-gold">A Research & Extension team innovating data-driven farming for a sustainable future.</p>
       <p class="subtitle-small">Remote Sensing | Artificial Intelligence | Agricultural Robotics | Drones | Ag Technologies</p>
 
     </header>
@@ -390,6 +397,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
