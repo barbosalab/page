@@ -567,7 +567,27 @@
         });
       })();
     </script>
+        <!-- Force scroll to top on refresh -->
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        // Always start at top unless there's a #anchor
+        if (!location.hash) {
+          window.scrollTo(0, 0);
+        }
+      });
+      // For Safari/Firefox back-forward cache restores
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) window.scrollTo(0, 0);
+      });
+    </script>
 
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
+
+
