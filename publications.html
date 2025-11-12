@@ -1,0 +1,573 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Barbosa Lab — Publications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+      /* ------- Base (copied from home to keep layout identical) ------- */
+      html, body { overflow-x: hidden; }
+      body { padding-top: 64px; padding-bottom: 160px; } /* bottom pad so fixed footer doesn't cover content */
+
+      /* Top navigation */
+      .topnav {
+        position: fixed; inset: 0 0 auto 0;
+        z-index: 10003;
+        background: rgba(0,0,0,0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+        backdrop-filter: saturate(120%) blur(6px);
+      }
+      .topnav .inner {
+        max-width: 960px; margin: 0 auto; height: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 18px; padding: 0 18px;
+      }
+
+      /* Brand */
+      .brand { display: flex; align-items: center; gap: 10px; }
+      .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
+      .brand a {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.5em;
+        color: #fff; text-decoration: none;
+      }
+      .topnav .brand a,
+      .topnav .brand a:visited,
+      .topnav .brand a:hover,
+      .topnav .brand a:focus,
+      .topnav .brand a:active {
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border: none !important;
+        outline: none;
+      }
+
+      /* Menu links */
+      .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+      .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 2px;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        transition: color 0.3s ease, border-color 0.3s ease;
+      }
+      .menu a:hover { color: #FFD700 !important; border-color: #FFD700 !important; }
+
+      /* Hamburger toggle */
+      .menu-toggle {
+        display: none;
+        border: none !important;
+        background: transparent !important;
+        color: #fff !important;
+        font-size: 1.6rem; cursor: pointer;
+        width: 44px; height: 44px;
+        align-items: center; justify-content: center;
+        position: relative;
+        z-index: 10004;
+        transition: color 0.3s ease;
+        -webkit-appearance: none; appearance: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .menu-toggle:hover { color: #FFD700 !important; }
+      .menu-toggle:focus,
+      .menu-toggle:active,
+      .menu-toggle:focus-visible {
+        outline: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+      .menu-toggle i { background: transparent !important; box-shadow: none !important; pointer-events: none; }
+
+      /* Right-side column for mobile */
+      @media (max-width: 768px) {
+        .menu-toggle { display: flex; }
+        .menu {
+          position: fixed;
+          top: 60px !important;
+          right: 0; bottom: 0;
+          width: 78%; max-width: 360px;
+          display: flex; flex-direction: column; gap: 16px;
+          background: transparent;
+          padding: 40px 24px 24px;
+          transform: translateX(100%);
+          transition: transform 0.3s ease;
+          z-index: 10002 !important;
+        }
+        .topnav.open .menu { transform: translateX(0); }
+        .menu li { list-style: none; }
+        .menu a {
+          color: #fff !important;
+          font-size: 1.2em;
+          font-weight: 600;
+          text-decoration: none;
+          border: none;
+          transition: color 0.3s ease;
+        }
+        .menu a:hover { color: #FFD700 !important; }
+
+        /* Dark background overlay (under the list) */
+        .nav-backdrop {
+          position: fixed; inset: 0;
+          background: rgba(0, 0, 0, 0.75);
+          opacity: 0; pointer-events: none;
+          transition: opacity 0.3s ease;
+          z-index: 9999 !important;
+        }
+        .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
+
+        /* Adjust logo text scale */
+        .brand img { height: 36px; }
+        .brand a { font-size: 1.25em; }
+      }
+
+      @media (max-width: 420px) {
+        .menu { width: 85%; padding: 80px 20px 20px; }
+        .menu a { font-size: 1.07em; }
+      }
+
+      /* === Fixed centered footer at bottom === */
+      #footer {
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        text-align: center; padding: 25px 0;
+        background: rgba(0,0,0,0.25); backdrop-filter: blur(6px);
+        border-top: 1px solid rgba(255,255,255,0.3);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        z-index: 999;
+      }
+      #footer .icons {
+        display: flex; justify-content: center; align-items: center;
+        gap: 25px; margin-bottom: 8px; list-style: none; padding: 0;
+      }
+      #footer .icons a { color: #fff; font-size: 1.3em; transition: color 0.3s ease; }
+      #footer .icons a:hover { color: #FFD700; }
+      #footer .copyright { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
+      #footer .copyright li {
+        display: block !important; margin: 3px 0 !important; padding: 0 !important;
+        border: 0 !important; background: none !important; box-shadow: none !important;
+      }
+      #footer .copyright li::before,
+      #footer .copyright li::after { content: "" !important; display: none !important; }
+      #footer .copyright li:not(:first-child) { border-left: 0 !important; padding-left: 0 !important; margin-left: 0 !important; }
+
+      /* === Page header (replaces large logo area) === */
+      #header {
+        text-align: center;
+        margin-top: 100px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 0 18px;
+      }
+      #header h1 {
+        margin-bottom: 0.3em;
+        color: #ffffff;
+        font-size: 2.5em;
+        font-weight: 700;
+      }
+      #header .subtitle-gold { color: #FDB719 !important; font-size: 1.1em; font-weight: 500; margin: 0.3em 0; }
+      #header .subtitle-small { color: #bfbfbf !important; font-size: 0.95em; font-weight: 400; margin-top: 4px; letter-spacing: 0.3px; }
+
+      @media (max-width: 768px) {
+        #header { margin-top: 80px; }
+        #header h1 { font-size: 1.8em; }
+        #header .subtitle-gold { font-size: 1em; }
+        #header .subtitle-small { font-size: 0.9em; }
+      }
+
+      /* === Publications content === */
+      .container { max-width: 960px; margin: 28px auto 0; padding: 0 18px 40px; }
+      .year-group { margin: 28px 0 14px; }
+      .year-group h2 {
+        color: #fff; font-size: 1.3em; font-weight: 700; margin: 0 0 10px;
+        border-left: 4px solid #FDB719; padding-left: 10px;
+      }
+
+      .pub-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+      .pub {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 12px;
+        padding: 16px;
+        backdrop-filter: blur(4px);
+      }
+      .pub .title {
+        color: #fff; font-weight: 700; line-height: 1.35; margin: 0 0 6px; font-size: 1.05em;
+      }
+      .pub .meta {
+        color: #dcdcdc; font-size: 0.95em; margin: 0 0 6px;
+      }
+      .pub .venue { color: #bfbfbf; font-size: 0.92em; }
+      .pub .doi a {
+        color: #FDB719; text-decoration: none; border-bottom: 1px dotted rgba(253,183,25,0.5);
+      }
+      .pub .doi a:hover { color: #FFD700; border-bottom-color: transparent; }
+
+      /* small utility */
+      .muted { color: #bfbfbf; }
+    </style>
+  </head>
+
+  <body class="is-preload">
+    <!-- Top navigation -->
+    <nav class="topnav" role="navigation" aria-label="Primary">
+      <div class="inner">
+        <div class="brand">
+          <a href="index.html">
+            <img src="images/logo.png" alt="Barbosa Lab Logo" />
+            <span>Barbosa Lab</span>
+          </a>
+        </div>
+
+        <!-- Hamburger / Close Toggle -->
+        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu" title="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Menu -->
+        <ul id="primary-menu" class="menu">
+          <li><a href="team.html">Team</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="publications.html" style="border-color:#FFD700;color:#FFD700;">Publications</a></li>
+          <li><a href="equipment.html">Equipment</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="about.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="nav-backdrop" hidden></div>
+
+    <!-- Page Header (same spacing/styling as home header) -->
+    <header id="header">
+      <h1>Publications</h1>
+      <p class="subtitle-gold">Advancing precision agriculture through open, rigorous, and applied research.</p>
+      <p class="subtitle-small">Explore peer-reviewed articles, data-driven methods, and field-validated results.</p>
+    </header>
+
+    <!-- Content -->
+    <main class="container" id="content">
+      <!-- 2025 -->
+      <section class="year-group" aria-label="Publications in 2025">
+        <h2>2025</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">Automated crop measurements with UAVs: Evaluation of an AI-driven platform for counting and biometric analysis</div>
+            <div class="meta">Martins, J. V. S.; Barbosa Júnior, M. R.; Sales, L. A.; Santos, R. G.; Ribeiro, W. S.; Oliveira, L. P.</div>
+            <div class="venue">Agriculture</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/agriculture15212213" target="_blank" rel="noopener">10.3390/agriculture15212213</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Designing and implementing a ground-based robotic system to support spraying drone operations: A step toward collaborative robotics</div>
+            <div class="meta">Barbosa Júnior, M. R.; Santos, R. G.; Sales, L. A.; Martins, J. V. S.; Santos, J. G.; Oliveira, L. P.</div>
+            <div class="venue">Actuators</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/act14080365" target="_blank" rel="noopener">10.3390/act14080365</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Forecasting yield and market class of Vidalia sweet onions: A UAV-based multispectral and texture data-driven approach</div>
+            <div class="meta">Barbosa Júnior, M. R.; Sales, L. A.; Santos, R. G.; Vargas, R. B. S.; Oliveira, L. P.</div>
+            <div class="venue">Smart Agricultural Technology</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.atech.2025.100808" target="_blank" rel="noopener">10.1016/j.atech.2025.100808</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Image-based and ML-driven analysis for assessing blueberry fruit quality</div>
+            <div class="meta">Barbosa Júnior, M. R.; Santos, R. G.; Sales, L. A.; Vargas, R. B. S.; Deltsidis, A.; Oliveira, L. P.</div>
+            <div class="venue">Heliyon</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.heliyon.2025.e42288" target="_blank" rel="noopener">10.1016/j.heliyon.2025.e42288</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Deep convolutional networks based on lightweight YOLOv8 for the detection and estimation of peanut losses from images of the post-harvest environment</div>
+            <div class="meta">Brito Filho, A. L.; Carreira, V. S.; Souza, J. B. C.; Almeida, S. L. H.; Barbosa Júnior, M. R.; Carneiro, F. M.; Silva, R. P.</div>
+            <div class="venue">Computers and Electronics in Agriculture</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.compag.2025.110282" target="_blank" rel="noopener">10.1016/j.compag.2025.110282</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">A neural network approach employed to classify soybean plants using multi-sensor images</div>
+            <div class="meta">Souza, F. L. P.; Shiratsuchi, L. S.; Dias, M. A.; Barbosa Júnior, M. R.; Setiyono, T.; Campos, S.</div>
+            <div class="venue">Precision Agriculture</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1007/s11119-025-10229-1" target="_blank" rel="noopener">10.1007/s11119-025-10229-1</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2024 -->
+      <section class="year-group" aria-label="Publications in 2024">
+        <h2>2024</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">Advancements in agricultural ground robots for specialty crops: An overview of innovations, challenges, and prospects</div>
+            <div class="meta">Barbosa Júnior, M. R.; Santos, R. G.; Sales, L. A.; Oliveira, L. P.</div>
+            <div class="venue">Plants</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/plants13233372" target="_blank" rel="noopener">10.3390/plants13233372</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Precision agriculture in the United States: A comprehensive meta-review inspiring further research, innovation, and adoption</div>
+            <div class="meta">Barbosa Júnior, M. R.; Moreira, B. R. A.; Carreira, V. S.; Brito Filho, A. L.; Trentin, C.; Souza, F. L. P.; Tedesco, D.; Setiyono, T.; Flores, J. P.; Ampatzidis, Y.; Silva, R. P.; Shiratsuchi, L. S.</div>
+            <div class="venue">Computers and Electronics in Agriculture</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.compag.2024.108993" target="_blank" rel="noopener">10.1016/j.compag.2024.108993</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Integrated sensing and machine learning: Predicting saccharine and bioenergy feedstocks in sugarcane</div>
+            <div class="meta">Barbosa Júnior, M. R.; Moreira, B. R. A.; Duron, D.; Setiyono, T.; Shiratsuchi, L. S.; Silva, R. P.</div>
+            <div class="venue">Industrial Crops and Products</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.indcrop.2024.118627" target="_blank" rel="noopener">10.1016/j.indcrop.2024.118627</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">AI-driven prediction of sugarcane quality attributes using satellite imagery</div>
+            <div class="meta">Canata, T. F.; Barbosa Júnior, M. R.; Oliveira, R. P.; Furlani, C. E. A.; Silva, R. P.</div>
+            <div class="venue">Sugar Tech</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1007/s12355-024-01399-9" target="_blank" rel="noopener">10.1007/s12355-024-01399-9</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Monitoring coffee fruit maturity using an enhanced convolutional neural network under different image acquisition settings</div>
+            <div class="meta">Kazama, E. H.; Tedesco, D.; Carreira, V. S.; Barbosa Júnior, M. R.; Oliveira, M. F.; Ferreira, F. M.; Junior, W. M.; Silva, R. P.</div>
+            <div class="venue">Scientia Horticulturae</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.scienta.2024.112957" target="_blank" rel="noopener">10.1016/j.scienta.2024.112957</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Fuel-flexible biomass off-gassing: The impact of antioxidant spent coffee grains on emissions of CO2, CO, CH4, and VOCs, physical deposits, and combustion in wood pellets</div>
+            <div class="meta">Moreira, B. R. A.; Cruz, V. H.; Barbosa Junior, M. R.; Lopes, P. R. M.; Silva, R. P.</div>
+            <div class="venue">Industrial Crops and Products</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.indcrop.2023.117748" target="_blank" rel="noopener">10.1016/j.indcrop.2023.117748</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Advancements in peanut mechanization: Implications for sustainable agriculture</div>
+            <div class="meta">Moreira, B. R. A.; Marra, T. M.; Silva, E. A.; Brito Filho, A. L.; Barbosa Júnior, M. R.; Santos, A. F.; Silva, R. P.; Vellidis, G.</div>
+            <div class="venue">Agricultural Systems</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.agsy.2024.103868" target="_blank" rel="noopener">10.1016/j.agsy.2024.103868</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2023 -->
+      <section class="year-group" aria-label="Publications in 2023">
+        <h2>2023</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">UAV imagery data and machine learning: A driving merger for predictive analysis of qualitative yield in sugarcane</div>
+            <div class="meta">Barbosa Júnior, M. R.; Moreira, B. R. A.; Oliveira, R. P.; Shiratsuchi, L. S.; Silva, R. P.</div>
+            <div class="venue">Frontiers in Plant Science</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3389/fpls.2023.1114852" target="_blank" rel="noopener">10.3389/fpls.2023.1114852</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Sustainable management of sweet potatoes: A review on practices, strategies, and opportunities in nutrition-sensitive agriculture, energy security, and quality of life</div>
+            <div class="meta">Tedesco, D.; Moreira, B. R. A.; Barbosa Júnior, M. R.; Maeda, M.; Silva, R. P.</div>
+            <div class="venue">Agricultural Systems</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.agsy.2023.103693" target="_blank" rel="noopener">10.1016/j.agsy.2023.103693</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Adsorption of tebuthiuron on hydrochar: structural, kinetic, isothermal, and mechanistic modeling, and ecotoxicological validation of remediative treatment of aqueous system</div>
+            <div class="meta">Moreira, B. R. A.; Cruz, V. H.; Barbosa Júnior, M. R.; Vasconcelos, L. G.; Silva, R. P.; Matos, P. R.</div>
+            <div class="venue">Biomass Conversion and Biorefinery</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1007/s13399-023-04365-9" target="_blank" rel="noopener">10.1007/s13399-023-04365-9</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Mapping gaps in sugarcane fields using UAV-RTK platform</div>
+            <div class="meta">Oliveira, M. P.; Cardoso, P. H.; Oliveira, R. P.; Barbosa Júnior, M. R.; Silva, R. P.</div>
+            <div class="venue">Agriculture</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/agriculture13061241" target="_blank" rel="noopener">10.3390/agriculture13061241</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Biomass off-gassing: A mini-review and meta-analysis aspiring to inspire future research and innovation in solid biofuels for safety-sensitive and environmentally responsible residential and industrial applications</div>
+            <div class="meta">Moreira, B. R. A.; Cruz, V. H.; Barbosa Júnior, M. R.; Matos, P. R.; Silva, R. P.</div>
+            <div class="venue">Industrial Crops and Products</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.indcrop.2023.117508" target="_blank" rel="noopener">10.1016/j.indcrop.2023.117508</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Fuel-flexible biomass off-gassing: antioxidant potential of agricultural residues for biogenic additives to low-emission wood pellets</div>
+            <div class="meta">Moreira, B. R. A.; Cruz, V. H.; Barbosa Junior, M. R.; Lopes, P. R. M.; Silva, R. P.</div>
+            <div class="venue">Biomass Conversion and Biorefinery</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1007/s13399-023-04869-4" target="_blank" rel="noopener">10.1007/s13399-023-04869-4</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Application of Bacillus spp. Phosphate-solubilizing bacteria improves common bean production compared to conventional fertilization</div>
+            <div class="meta">Souza, A. E. S.; Filla, V. A.; Silva, J. P. M.; Barbosa Júnior, M. R.; Paiva, C. A. O.; Coelho, A. P.; Lemos, L. B.</div>
+            <div class="venue">Plants</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/plants12223827" target="_blank" rel="noopener">10.3390/plants12223827</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2022 -->
+      <section class="year-group" aria-label="Publications in 2022">
+        <h2>2022</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">UAVs to monitor and manage sugarcane: Integrative review</div>
+            <div class="meta">Barbosa Júnior, M. R.; Moreira, B. R. A.; Brito Filho, A. L.; Tedesco, D.; Shiratsuchi, L. S.; Silva, R. P.</div>
+            <div class="venue">Agronomy</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/agronomy12030661" target="_blank" rel="noopener">10.3390/agronomy12030661</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">The time of day is key to discriminate cultivars of sugarcane upon imagery data from unmanned aerial vehicle</div>
+            <div class="meta">Barbosa Júnior, M. R.; Tedesco, D.; Carreira, V. S.; Pinto, A. A.; Moreira, B. R. A.; Shiratsuchi, L. S.; Zerbato, C.; Silva, R. P.</div>
+            <div class="venue">Drones</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/drones6050112" target="_blank" rel="noopener">10.3390/drones6050112</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">A High-throughput imagery protocol to predict functionality upon fractality of carbon-capturing biointerfaces</div>
+            <div class="meta">Moreira, B. R. A.; Brito Filho, A. L.; Barbosa Júnior, M. R.; Silva, R. P.</div>
+            <div class="venue">Agronomy</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/agronomy12020446" target="_blank" rel="noopener">10.3390/agronomy12020446</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">High-throughput carbon-capturing frameworks by pelleting hydrochar of food waste and its residual ash as a dopant</div>
+            <div class="meta">Moreira, B. R. A.; Brito Filho, A. L.; Barbosa Júnior, M. R.; Silva, R. P.</div>
+            <div class="venue">BioEnergy Research</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1007/s12155-022-10420-6" target="_blank" rel="noopener">10.1007/s12155-022-10420-6</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Production of high-quality biogenic fuels by co-pelletization of sugarcane bagasse with pinewood sawdust and peanut shell</div>
+            <div class="meta">Moreira, B. R. A.; Barbosa Júnior, M. R.; Brito Filho, A. L.; Silva, R. P.</div>
+            <div class="venue">Biomass Conversion and Biorefinery</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1007/s13399-022-02818-1" target="_blank" rel="noopener">10.1007/s13399-022-02818-1</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Corn grain yield forecasting by satellite remote sensing and machine learning models</div>
+            <div class="meta">Pinto, A. A.; Zerbato, C.; Rolim, G. S.; Barbosa Júnior, M. R.; Silva, L. F. V.; Oliveira, R. P.</div>
+            <div class="venue">Agronomy Journal</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1002/agj2.21141" target="_blank" rel="noopener">10.1002/agj2.21141</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Predicting sugarcane biometric parameters by UAV multispectral images and machine learning</div>
+            <div class="meta">Oliveira, R. P.; Barbosa Júnior, M. R.; Pinto, A. A.; Oliveira, J. L. P.; Zerbato, C.; Furlani, C. E. A.</div>
+            <div class="venue">Agronomy</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/agronomy12091992" target="_blank" rel="noopener">10.3390/agronomy12091992</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Agro-residual biomass and disposable protective face mask: a merger for converting waste to plastic-fiber fuel via an integrative carbonization-pelletization framework</div>
+            <div class="meta">Moreira, B. R. A.; Cruz, V. H.; Barbosa Júnior, M. R.; Meneses, M. D.; Matos, P. R.; Silva, R. P.</div>
+            <div class="venue">Biomass Conversion and Biorefinery</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1007/s13399-022-03285-4" target="_blank" rel="noopener">10.1007/s13399-022-03285-4</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">UAV multispectral data: A reliable approach for managing phosphate-solubilizing bacteria in common bean</div>
+            <div class="meta">Souza, A. E. S.; Barbosa Júnior, M. R.; Moreira, B. R. A.; Silva, R. P.; Lemos, L. B.</div>
+            <div class="venue">Agronomy</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/agronomy12102284" target="_blank" rel="noopener">10.3390/agronomy12102284</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2021 -->
+      <section class="year-group" aria-label="Publications in 2021">
+        <h2>2021</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">Mapping gaps in sugarcane by UAV RGB imagery: The lower and earlier the flight, the more accurate</div>
+            <div class="meta">Barbosa Júnior, M. R.; Tedesco, D.; Correa, R. G.; Moreira, B. R. A.; Silva, R. P.; Zerbato, C.</div>
+            <div class="venue">Agronomy</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.3390/agronomy11122578" target="_blank" rel="noopener">10.3390/agronomy11122578</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="title">Predicting on multi-target regression for the yield of sweet potato by the market class of its roots upon vegetation indices</div>
+            <div class="meta">Tedesco, D.; Moreira, B. R. A.; Barbosa Júnior, M. R.; Papa, J. P.; Silva, R. P.</div>
+            <div class="venue">Computers and Electronics in Agriculture</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.1016/j.compag.2021.106544" target="_blank" rel="noopener">10.1016/j.compag.2021.106544</a></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2020 -->
+      <section class="year-group" aria-label="Publications in 2020">
+        <h2>2020</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div class="title">UAV applications in Agriculture 4.0</div>
+            <div class="meta">Amaral, L. R.; Zerbato, C.; Freitas, R. G.; Barbosa Júnior, M. R.; Simões, I. O. P. S.</div>
+            <div class="venue">Revista Ciencia Agronomica</div>
+            <div class="doi">DOI: <a href="https://doi.org/10.5935/1806-6690.20200091" target="_blank" rel="noopener">10.5935/1806-6690.20200091</a></div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Footer (identical to home) -->
+    <footer id="footer">
+      <ul class="icons">
+        <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
+        <li><a href="https://www.instagram.com/barbosaresearchlab" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://www.linkedin.com/company/barbosaresearchlab" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://www.facebook.com/barbosaresearchlab" target="_blank" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; 2025 Barbosa Lab, University of Missouri. All rights reserved.</li>
+        <li>Website Developed by Marcelo Barbosa.</li>
+      </ul>
+    </footer>
+
+    <!-- Same JS for mobile menu -->
+    <script>
+      (function () {
+        const nav = document.querySelector('.topnav');
+        const btn = document.querySelector('.menu-toggle');
+        const icon = btn.querySelector('i');
+        const menu = document.getElementById('primary-menu');
+        const backdrop = document.querySelector('.nav-backdrop');
+
+        function lockScroll(lock) {
+          document.documentElement.style.overflow = lock ? 'hidden' : '';
+          document.body.style.overflow = lock ? 'hidden' : '';
+        }
+        function openMenu() {
+          nav.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.setAttribute('aria-label', 'Close menu');
+          btn.title = 'Close menu';
+          icon.classList.replace('fa-bars', 'fa-xmark');
+          backdrop && backdrop.removeAttribute('hidden');
+          lockScroll(true);
+        }
+        function closeMenu() {
+          nav.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-label', 'Open menu');
+          btn.title = 'Open menu';
+          icon.classList.replace('fa-xmark', 'fa-bars');
+          backdrop && backdrop.setAttribute('hidden', '');
+          lockScroll(false);
+        }
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          nav.classList.contains('open') ? closeMenu() : openMenu();
+        });
+        backdrop && backdrop.addEventListener('click', closeMenu);
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
+        });
+        menu.addEventListener('click', (e) => {
+          if (e.target.closest('a') && window.matchMedia('(max-width: 768px)').matches) closeMenu();
+        });
+      })();
+    </script>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
