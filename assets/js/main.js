@@ -8,6 +8,18 @@
 
 	"use strict";
 
+	
+	// Always start at top on page load/refresh
+  	if ('scrollRestoration' in history) {
+    	history.scrollRestoration = 'manual';
+  	}
+  	const scrollTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  	window.addEventListener('load', scrollTop);
+  	// Handle back/forward cache restores (Safari/Firefox)
+  	window.addEventListener('pageshow', (e) => { if (e.persisted) scrollTop(); });
+
+
+	
 	var	$body = document.querySelector('body');
 
 	// Methods/polyfills.
