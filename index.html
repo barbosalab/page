@@ -187,25 +187,38 @@
   color: #FFD700;
 }
 
-/* Copyright text centered */
+/* === Remove footer separators for good === */
 #footer .copyright {
-  color: #aaa;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-#footer .copyright li {
-  display: block;
-  font-size: 0.95em;
-  margin: 3px 0;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
 }
 
-/* Force remove any vertical bar separators */
+#footer .copyright li {
+  display: block !important;
+  margin: 3px 0 !important;
+  padding: 0 !important;
+
+  /* kill theme separators that look like a "|" */
+  border: 0 !important;
+  border-left: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* if theme injects pipes via pseudo elements */
 #footer .copyright li::before,
 #footer .copyright li::after {
-  content: none !important;
-  display: none !important;
+  content: "" !important;   /* override " | " */
+  display: none !important; /* hide completely */
+}
+
+/* some themes add only on non-first items */
+#footer .copyright li:not(:first-child) {
+  border-left: 0 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 </style>
@@ -314,6 +327,7 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
 
 
 
