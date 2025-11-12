@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+    <!-- Prevent browser scroll restoration ASAP -->
+    <script>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    </script>
+
     <style>
       /* ------- Base (copied from home to keep layout identical) ------- */
       html, body { overflow-x: hidden; }
@@ -567,27 +574,36 @@
         });
       })();
     </script>
-        <!-- Force scroll to top on refresh -->
+    <!-- Strong, multi-pass scroll-to-top enforcement -->
     <script>
-      window.addEventListener('DOMContentLoaded', function () {
-        // Always start at top unless there's a #anchor
-        if (!location.hash) {
-          window.scrollTo(0, 0);
-        }
-      });
-      // For Safari/Firefox back-forward cache restores
-      window.addEventListener('pageshow', function (e) {
-        if (e.persisted) window.scrollTo(0, 0);
-      });
+      (function forceTop() {
+        // Respect intentional anchor navigation
+        if (location.hash) return;
+
+        const toTop = () => window.scrollTo(0, 0);
+
+        // Normal load: run after layout settles (2 frames)
+        window.addEventListener('load', function () {
+          requestAnimationFrame(() => { requestAnimationFrame(toTop); });
+        }, { once: true });
+
+        // Back/forward cache restores
+        window.addEventListener('pageshow', function (e) {
+          if (e.persisted) toTop();
+        });
+
+        // Nudge again after potential late reflows (images/fonts)
+        let tries = 0;
+        const nudge = () => {
+          if (tries++ < 5 && !location.hash) {
+            requestAnimationFrame(toTop);
+            setTimeout(toTop, 60);
+          }
+        };
+        window.addEventListener('load', () => setTimeout(nudge, 120));
+      })();
     </script>
 
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-
-
-    <script src="assets/js/main.js"></script>
-  </body>
-</html>
-
-
