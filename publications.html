@@ -9,6 +9,12 @@
 
     <style>
       /* ------- Base (copied from home to keep layout identical) ------- */
+      
+      html, body {
+        scroll-behavior: auto !important;
+        overflow-anchor: none;
+      }
+      
       html, body { overflow-x: hidden; }
 
       /* Remove any default body margin so nav can touch viewport edges */
@@ -599,5 +605,13 @@
     </script>
 
     <script src="assets/js/main.js"></script>
+
+  <script>
+    window.addEventListener("load", () => {
+      window.scrollTo(0, 0);
+    });
+  </script>
+    
+  
   </body>
 </html>
