@@ -25,6 +25,7 @@
 
       main.container {
         flex: 1 0 auto;
+        padding-bottom: 40px;
       }
 
       /* Top navigation */
@@ -48,7 +49,6 @@
       .brand { display: flex; align-items: center; gap: 10px; }
       .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
 
-      /* FIX: Prevent hover color + underline on lab name */
       .topnav .brand a,
       .topnav .brand a:visited,
       .topnav .brand a:hover,
@@ -63,10 +63,9 @@
         text-decoration: none !important;
         border: none !important;
         box-shadow: none !important;
-        outline: none !important;
       }
 
-      /* Menu links */
+      /* Menu */
       .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
       .menu a {
         color: #fff;
@@ -78,7 +77,6 @@
       }
       .menu a:hover { color: #FFD700 !important; border-color: #FFD700 !important; }
 
-      /* Hamburger icon */
       .menu-toggle {
         display: none;
         border: none;
@@ -93,7 +91,6 @@
 
       @media (max-width: 768px) {
         .menu-toggle { display: flex; }
-
         .menu {
           position: fixed;
           top: 60px; right: 0; bottom: 0;
@@ -118,42 +115,51 @@
         .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
       }
 
-      @media (max-width: 420px) {
-        .menu { width: 85%; padding: 80px 20px 20px; }
-        .menu a { font-size: 1.07em; }
-      }
-
-      /* Footer */
+      /* --- FIX FOOTER GAPS + FULL WIDTH --- */
       #footer {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        text-align: center;
+        width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+
+        margin-top: auto; /* pushes footer to bottom */
+
         padding: 25px 0;
         background: rgba(0,0,0,0.25);
         backdrop-filter: blur(6px);
         border-top: 1px solid rgba(255,255,255,0.3);
+
+        text-align: center;
+        box-sizing: border-box;
+
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
+      }
+
+      #footer ul {
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none;
       }
 
       #footer .icons {
-        display: flex; gap: 25px; list-style: none; padding: 0; margin-bottom: 8px;
+        display: flex; gap: 25px;
+        margin: 0 0 10px 0 !important;
       }
+
       #footer .icons a {
-        color: #fff; font-size: 1.3em; transition: color 0.3s ease;
+        color: #fff; font-size: 1.3em;
+        transition: color 0.3s ease;
       }
       #footer .icons a:hover { color: #FFD700; }
 
       #footer .copyright {
-        list-style: none; padding: 0; margin: 0;
-        display: flex; flex-direction: column;
+        display: flex;
+        flex-direction: column;
+        margin: 0 !important;
       }
       #footer .copyright li {
-        margin: 3px 0;
+        margin: 3px 0 !important;
       }
     </style>
   </head>
@@ -187,7 +193,7 @@
     </nav>
     <div class="nav-backdrop" hidden></div>
 
-    <!-- EMPTY CONTENT AREA -->
+    <!-- EMPTY CONTENT -->
     <main class="container" id="content"></main>
 
     <!-- Footer -->
@@ -204,7 +210,6 @@
       </ul>
     </footer>
 
-    <!-- Mobile menu JS -->
     <script>
       (function () {
         const nav = document.querySelector('.topnav');
