@@ -15,7 +15,14 @@
       body {
         margin: 0;
         padding-top: 0;
-        padding-bottom: 160px; /* bottom pad so fixed footer doesn't cover content */
+        /* no padding-bottom now */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main.container {
+        flex: 1 0 auto;
       }
 
       /* Top navigation */
@@ -142,13 +149,19 @@
 
       /* === Fixed centered footer at bottom === */
       #footer {
-        position: fixed; bottom: 0; left: 0; width: 100%;
-        text-align: center; padding: 25px 0;
-        background: rgba(0,0,0,0.25); backdrop-filter: blur(6px);
+        position: static; /* or just remove 'position' entirely */
+        width: 100%;
+        text-align: center;
+        padding: 25px 0;
+        background: rgba(0,0,0,0.25);
+        backdrop-filter: blur(6px);
         border-top: 1px solid rgba(255,255,255,0.3);
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
+      
       #footer .icons {
         display: flex; justify-content: center; align-items: center;
         gap: 25px; margin-bottom: 8px; list-style: none; padding: 0;
