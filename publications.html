@@ -8,18 +8,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
     <style>
-      /* ------- Base (matching home) ------- */
+      /* ------- Base (copied from home to keep layout identical) ------- */
       html, body { overflow-x: hidden; }
+
+      /* Remove any default body margin so nav can touch viewport edges */
       body {
         margin: 0;
-        padding-top: 64px;       /* same as home so content clears fixed nav */
-        padding-bottom: 160px;   /* so fixed footer doesn't cover content */
+        padding-top: 0;
+        padding-bottom: 160px; /* bottom pad so fixed footer doesn't cover content */
       }
 
-      /* Top navigation (identical behavior/width as home) */
+      /* Top navigation */
       .topnav {
-        position: fixed;
-        inset: 0 0 auto 0;       /* full-width bar at top */
+        /* Make the bar span full viewport width, regardless of centered layout */
+        position: relative;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+
         z-index: 10003;
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
@@ -158,10 +164,10 @@
       #footer .copyright li::after { content: "" !important; display: none !important; }
       #footer .copyright li:not(:first-child) { border-left: 0 !important; padding-left: 0 !important; margin-left: 0 !important; }
 
-      /* === Page header === */
+      /* === Page header (replaces large logo area) === */
       #header {
         text-align: center;
-        margin-top: 40px;   /* small gap under nav */
+        margin-top: 40px;  /* small gap below nav now that nav is not fixed */
         display: flex; flex-direction: column; align-items: center; justify-content: center;
         padding: 0 18px;
       }
@@ -209,6 +215,7 @@
       }
       .pub .doi a:hover { color: #FFD700; border-bottom-color: transparent; }
 
+      /* small utility */
       .muted { color: #bfbfbf; }
     </style>
   </head>
@@ -243,7 +250,7 @@
     </nav>
     <div class="nav-backdrop" hidden></div>
 
-    <!-- Page Header -->
+    <!-- Page Header (same spacing/styling as home header) -->
     <header id="header">
       <h1>Publications</h1>
       <p class="subtitle-gold">Advancing precision agriculture through open, rigorous, and applied research.</p>
@@ -513,7 +520,7 @@
       </section>
     </main>
 
-    <!-- Footer (identical style) -->
+    <!-- Footer (identical to home) -->
     <footer id="footer">
       <ul class="icons">
         <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
