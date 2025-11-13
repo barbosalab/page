@@ -48,10 +48,22 @@
       .brand { display: flex; align-items: center; gap: 10px; }
       .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
 
-      .brand a {
-        display: flex; align-items: center; gap: 10px;
-        font-weight: 800; font-size: 1.5em;
-        color: #fff; text-decoration: none;
+      /* FIX: Prevent hover color + underline on lab name */
+      .topnav .brand a,
+      .topnav .brand a:visited,
+      .topnav .brand a:hover,
+      .topnav .brand a:focus,
+      .topnav .brand a:active {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 1.5em;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
       }
 
       /* Menu links */
@@ -106,6 +118,11 @@
         .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
       }
 
+      @media (max-width: 420px) {
+        .menu { width: 85%; padding: 80px 20px 20px; }
+        .menu a { font-size: 1.07em; }
+      }
+
       /* Footer */
       #footer {
         width: 100vw;
@@ -142,6 +159,7 @@
   </head>
 
   <body class="is-preload">
+    
     <!-- Navigation -->
     <nav class="topnav" role="navigation">
       <div class="inner">
