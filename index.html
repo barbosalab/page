@@ -7,324 +7,302 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+    <style>
+      /* ------- Base ------- */
+      html, body { overflow-x: hidden; }
+      body { padding-top: 64px; }
 
-    
-<style>
-  /* ------- Base ------- */
-  html, body { overflow-x: hidden; }
-  body { padding-top: 64px; }
+      /* Top navigation */
+      .topnav {
+        position: fixed; inset: 0 0 auto 0;
+        z-index: 10003;
+        background: rgba(0,0,0,0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+        backdrop-filter: saturate(120%) blur(6px);
+      }
+      .topnav .inner {
+        max-width: 960px; margin: 0 auto; height: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 18px; padding: 0 18px;
+      }
 
-  /* Top navigation */
-  .topnav {
-    position: fixed; inset: 0 0 auto 0;
-    z-index: 10003;
-    background: rgba(0,0,0,0.15);
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    backdrop-filter: saturate(120%) blur(6px);
-  }
-  .topnav .inner {
-    max-width: 960px; margin: 0 auto; height: 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 18px; padding: 0 18px;
-  }
+      /* Brand */
+      .brand { display: flex; align-items: center; gap: 10px; }
+      .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
+      .brand a {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.3em;   /* smaller so it doesn't look huge / wrap */
+        color: #fff; text-decoration: none;
+      }
+      /* keep text on one line */
+      .topnav .brand span {
+        white-space: nowrap;
+      }
 
-  /* Brand */
-  .brand { display: flex; align-items: center; gap: 10px; }
-  .brand img { height: 40px; width: auto; filter: drop-shadow(0 0 4px rgba(0,0,0,0.3)); }
-  .brand a {
-    display: flex; align-items: center; gap: 10px;
-    font-weight: 800; font-size: 1.5em;
-    color: #fff; text-decoration: none;
-  }
+      /* Always keep brand text white */
+      .topnav .brand a,
+      .topnav .brand a:visited {
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border: none !important;
+      }
+      .topnav .brand a:hover,
+      .topnav .brand a:focus,
+      .topnav .brand a:active {
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border: none !important;
+        outline: none;
+      }
 
-  /* Always keep brand text white */
-  .topnav .brand a,
-  .topnav .brand a:visited {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    border: none !important;
-  }
-  .topnav .brand a:hover,
-  .topnav .brand a:focus,
-  .topnav .brand a:active {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    border: none !important;
-    outline: none;
-  }
+      /* Menu links */
+      .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+      .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 6px 2px;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        transition: color 0.3s ease, border-color 0.3s ease;
+      }
+      .menu a:hover {
+        color: #FFD700 !important;
+        border-color: #FFD700 !important;
+      }
 
-  /* Menu links */
-  .menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
-  .menu a {
-    color: #fff;
-    text-decoration: none;
-    padding: 6px 2px;
-    border-bottom: 2px solid transparent;
-    font-weight: 500;
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
-  .menu a:hover {
-    color: #FFD700 !important;
-    border-color: #FFD700 !important;
-  }
+      /* Hamburger toggle (neutralize theme's button styles) */
+      .menu-toggle {
+        display: none; /* hidden on desktop */
+        border: none !important;
+        background: transparent !important;
+        color: #fff !important;
+        font-size: 1.6rem; cursor: pointer;
+        width: 44px; height: 44px;
+        align-items: center; justify-content: center;
+        position: relative;
+        z-index: 10004;
+        transition: color 0.3s ease;
+        -webkit-appearance: none;
+        appearance: none;
+        -webkit-tap-highlight-color: transparent; /* remove tap highlight */
+      }
+      .menu-toggle:hover { color: #FFD700 !important; }
+      .menu-toggle:focus,
+      .menu-toggle:active,
+      .menu-toggle:focus-visible {
+        outline: none !important;
+        background: transparent !important;   /* kill green/teal active bg */
+        box-shadow: none !important;
+      }
+      /* Make sure the icon itself never gets a bg */
+      .menu-toggle i {
+        background: transparent !important;
+        box-shadow: none !important;
+        pointer-events: none; /* clicks go to the button */
+      }
 
-  /* Hamburger toggle (neutralize theme's button styles) */
-  .menu-toggle {
-    display: none; /* hidden on desktop */
-    border: none !important;
-    background: transparent !important;
-    color: #fff !important;
-    font-size: 1.6rem; cursor: pointer;
-    width: 44px; height: 44px;
-    align-items: center; justify-content: center;
-    position: relative;
-    z-index: 10004;
-    transition: color 0.3s ease;
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent; /* remove tap highlight */
-  }
-  .menu-toggle:hover { color: #FFD700 !important; }
-  .menu-toggle:focus,
-  .menu-toggle:active,
-  .menu-toggle:focus-visible {
-    outline: none !important;
-    background: transparent !important;   /* kill green/teal active bg */
-    box-shadow: none !important;
-  }
-  /* Make sure the icon itself never gets a bg */
-  .menu-toggle i {
-    background: transparent !important;
-    box-shadow: none !important;
-    pointer-events: none; /* clicks go to the button */
-  }
+      /* Right-side column for mobile */
+      @media (max-width: 768px) {
+        .menu-toggle { display: flex; }
 
-  /* Right-side column for mobile */
-  @media (max-width: 768px) {
-    .menu-toggle { display: flex; }
+        .menu {
+          position: fixed;
+          top: 60px !important;
+          right: 0; bottom: 0;
+          width: 78%; max-width: 360px;
+          display: flex; flex-direction: column; gap: 16px;
+          background: transparent;
+          padding: 40px 24px 24px;
+          transform: translateX(100%);
+          transition: transform 0.3s ease;
+          z-index: 10002 !important;
+        }
+        .topnav.open .menu { transform: translateX(0); }
 
-    .menu {
-      position: fixed;
-      top: 60px !important;
-      right: 0; bottom: 0;
-      width: 78%; max-width: 360px;
-      display: flex; flex-direction: column; gap: 16px;
-      background: transparent;
-      padding: 40px 24px 24px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 10002 !important;
-    }
-    .topnav.open .menu { transform: translateX(0); }
+        .menu li { list-style: none; }
+        .menu a {
+          color: #fff !important;
+          font-size: 1.2em;
+          font-weight: 600;
+          text-decoration: none;
+          border: none;
+          transition: color 0.3s ease;
+        }
+        .menu a:hover { color: #FFD700 !important; }
 
-    .menu li { list-style: none; }
-    .menu a {
-      color: #fff !important;
-      font-size: 1.2em;
-      font-weight: 600;
-      text-decoration: none;
-      border: none;
-      transition: color 0.3s ease;
-    }
-    .menu a:hover { color: #FFD700 !important; }
+        /* Dark background overlay (under the list) */
+        .nav-backdrop {
+          position: fixed; inset: 0;
+          background: rgba(0, 0, 0, 0.75);
+          opacity: 0; pointer-events: none;
+          transition: opacity 0.3s ease;
+          z-index: 9999 !important;
+        }
+        .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-    /* Dark background overlay (under the list) */
-    .nav-backdrop {
-      position: fixed; inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 9999 !important;
-    }
-    .topnav.open + .nav-backdrop { opacity: 1; pointer-events: auto; }
+        /* Adjust logo */
+        .brand img { height: 36px; }
+        .brand a { font-size: 1.25em; }
+      }
 
-    /* Adjust logo */
-    .brand img { height: 36px; }
-    .brand a { font-size: 1.25em; }
-  }
+      /* Tiny phones */
+      @media (max-width: 420px) {
+        .menu { width: 85%; padding: 80px 20px 20px; }
+        .menu a { font-size: 1.07em; }
+      }
 
-  /* Tiny phones */
-  @media (max-width: 420px) {
-    .menu { width: 85%; padding: 80px 20px 20px; }
-    .menu a { font-size: 1.07em; }
-  }
+      /* === FIXED CENTERED FOOTER AT BOTTOM === */
+      #footer {
+        position: fixed;              /* stays at bottom even if page scrolls */
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 25px 0;
+        background: rgba(0,0,0,0.25);
+        backdrop-filter: blur(6px);
+        border-top: 1px solid rgba(255,255,255,0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
 
-/* === FIXED CENTERED FOOTER AT BOTTOM === */
-#footer {
-  position: fixed;              /* stays at bottom even if page scrolls */
-  bottom: 0;                    /* attach to bottom edge */
-  left: 0;
-  width: 100%;                  /* full width */
-  text-align: center;
-  padding: 25px 0;
-  background: rgba(0,0,0,0.25); /* subtle transparent background */
-  backdrop-filter: blur(6px);   /* nice glass effect */
-  border-top: 1px solid rgba(255,255,255,0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;                 /* stays above content */
-}
+      /* Social icons centered */
+      #footer .icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-bottom: 8px;
+        list-style: none;
+        padding: 0;
+      }
 
-/* Social icons centered */
-#footer .icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  margin-bottom: 8px;
-  list-style: none;
-  padding: 0;
-}
+      #footer .icons a {
+        color: #fff;
+        font-size: 1.3em;
+        transition: color 0.3s ease;
+      }
+      #footer .icons a:hover {
+        color: #FFD700;
+      }
 
-#footer .icons a {
-  color: #fff;
-  font-size: 1.3em;
-  transition: color 0.3s ease;
-}
-#footer .icons a:hover {
-  color: #FFD700;
-}
+      /* Remove footer separators */
+      #footer .copyright {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
 
-/* === Remove footer separators for good === */
-#footer .copyright {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
-}
+      #footer .copyright li {
+        display: block !important;
+        margin: 3px 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-left: 0 !important;
+        background: none !important;
+        box-shadow: none !important;
+      }
 
-#footer .copyright li {
-  display: block !important;
-  margin: 3px 0 !important;
-  padding: 0 !important;
+      #footer .copyright li::before,
+      #footer .copyright li::after {
+        content: "" !important;
+        display: none !important;
+      }
 
-  /* kill theme separators that look like a "|" */
-  border: 0 !important;
-  border-left: 0 !important;
-  background: none !important;
-  box-shadow: none !important;
-}
+      #footer .copyright li:not(:first-child) {
+        border-left: 0 !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+      }
 
-/* if theme injects pipes via pseudo elements */
-#footer .copyright li::before,
-#footer .copyright li::after {
-  content: "" !important;   /* override " | " */
-  display: none !important; /* hide completely */
-}
+      /* === Header layout, spacing, and font styling === */
+      #header {
+        text-align: center;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
-/* some themes add only on non-first items */
-#footer .copyright li:not(:first-child) {
-  border-left: 0 !important;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
+      /* Big logo */
+      #header img.header-logo {
+        display: block;
+        width: auto;
+        height: 300px !important;
+        max-height: none !important;
+        max-width: 90vw;
+      }
 
-/* === Header layout, spacing, and font styling === */
-#header {
-  text-align: center;
-  margin-top: 100px;              /* space below navbar */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+      @media (max-width: 991.98px) {
+        #header img.header-logo {
+          height: 240px !important;
+        }
+      }
 
+      @media (max-width: 768px) {
+        #header img.header-logo {
+          height: 200px !important;
+        }
+      }
 
-  
-/* === Force big logo everywhere, with mobile override === */
-/* Desktop default */
-#header img.header-logo {
-  display: block;
-  width: auto;
-  height: 300px !important;   /* your desktop size */
-  max-height: none !important; /* ignore any theme max-heights */
-  max-width: 90vw;             /* avoid spilling off very narrow screens */
-}
+      @media (max-width: 480px) {
+        #header img.header-logo {
+          height: 200px !important;
+        }
+      }
 
-/* Tablets */
-@media (max-width: 991.98px) {
-  #header img.header-logo {
-    height: 240px !important;
-  }
-}
+      #header h1 {
+        margin-bottom: 0.3em;
+        color: #ffffff;
+        font-size: 2.5em;
+        font-weight: 700;
+      }
 
-/* Phones */
-@media (max-width: 768px) {
-  #header img.header-logo {
-    height: 200px !important;  /* your phone size */
-  }
-}
+      #header p {
+        margin: 0.15em 0 !important;
+        line-height: 1.3 !important;
+        color: #FDB719 !important;
+        font-weight: 300;
+        font-size: 1.5em;
+      }
 
-/* Small phones (optional – keep same as phones) */
-@media (max-width: 480px) {
-  #header img.header-logo {
-    height: 200px !important;
-  }
-}
+      #header .subtitle-gold {
+        color: #FDB719 !important;
+        font-size: 1.7em;
+        font-weight: 400;
+        margin: 0.15em 0;
+        line-height: 1.3;
+      }
 
+      #header .subtitle-small {
+        color: #bfbfbf !important;
+        font-size: 1em;
+        font-weight: 400;
+        margin-top: 4px;
+        letter-spacing: 0.3px;
+      }
 
-
-
-#header h1 {
-  margin-bottom: 0.3em;
-  color: #ffffff;                 /* white title */
-  font-size: 2.5em;
-  font-weight: 700;
-}
-
-#header p {
-  margin: 0.15em 0 !important;    /* closer lines */
-  line-height: 1.3 !important;
-  color: #FDB719 !important;      /* grey subtitles */
-  font-weight: 300;
-  font-size: 1.5em;
-}
-
-/* === Header subtitle colors and sizes === */
-#header .subtitle-gold {
-  color: #FDB719 !important;   /* golden mission line */
-  font-size: 1.7em;              /* keep normal size */
-  font-weight: 400;
-  margin: 0.15em 0;
-  line-height: 1.3;
-}
-
-#header .subtitle-small {
-  color: #bfbfbf !important;   /* grey tech line */
-  font-size: 1em;           /* smaller font */
-  font-weight: 400;
-  margin-top: 4px;
-  letter-spacing: 0.3px;
-}
-
-/* === Responsive tweaks === */
-@media (max-width: 768px) {
-  #header {
-    margin-top: 80px;
-  }
-  #header .header-logo {
-    height: 70px;
-    margin-bottom: 8px;
-  }
-  #header h1 {
-    font-size: 1.6em;
-  }
-  #header p {
-    font-size: 0.9em;
-  }
-}
-
-
-
-
-</style>
-
-
-
-
-    
+      @media (max-width: 768px) {
+        #header {
+          margin-top: 80px;
+        }
+        #header .header-logo {
+          height: 70px;
+          margin-bottom: 8px;
+        }
+        #header h1 {
+          font-size: 1.6em;
+        }
+        #header p {
+          font-size: 0.9em;
+        }
+      }
+    </style>
   </head>
   <body class="is-preload">
 
@@ -362,7 +340,6 @@
       <p class="subtitle-gold">Integrating science, data, and technology to advance precision agriculture sustainably.</p>
       <p class="subtitle-gold"></p>
       <p class="subtitle-small">Remote Sensing | Artificial Intelligence | Agricultural Robotics | Drones | Ag Technologies</p>
-
     </header>
 
     <footer id="footer">
@@ -430,5 +407,3 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
-
-
