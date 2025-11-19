@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Barbosa Lab — Publications</title>
+    <title>Barbosa Lab — Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
@@ -21,8 +21,9 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        padding-top: 0; 
-        padding-bottom: 0;
+        /* leave room for fixed top and bottom bars */
+        padding-top: 60px;   /* nav height */
+        padding-bottom: 90px;/* footer height (approx) */
         box-sizing: border-box;
       }
 
@@ -35,86 +36,15 @@
         box-sizing: border-box;
       }
 
-      /* ====================================
-         ✅ NEW STYLES FOR PUBLICATIONS CONTENT
-         ==================================== */
-      /* Page Header Styling */
-      #content > header {
-        text-align: center;
-        margin-bottom: 40px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      #content > header h1 {
-        font-size: 2.8em;
-        font-weight: 900;
-        margin-bottom: 10px;
-      }
-      .subtitle-gold {
-        color: #FFD700;
-        font-style: italic;
-        margin-top: 0;
-      }
-      .subtitle-small {
-        font-size: 0.9em;
-        opacity: 0.8;
-      }
-      
-      /* Publication List Styling */
-      .year-group {
-        margin-bottom: 50px;
-      }
-      .year-group h2 {
-        font-size: 1.8em;
-        border-bottom: 2px solid #FFD700;
-        display: inline-block;
-        padding-bottom: 5px;
-        margin-bottom: 30px;
-        color: #fff;
-      }
-      .pub-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .pub {
-        margin-bottom: 30px;
-        padding: 15px 0;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
-      }
-      .pub:last-child {
-        border-bottom: none;
-      }
-      .pub .title {
-        font-weight: 700;
-        font-size: 1.15em;
-        margin-bottom: 5px;
-        color: #ffffff;
-      }
-      .pub .meta {
-        font-size: 0.95em;
-        opacity: 0.8;
-        margin-bottom: 5px;
-      }
-      .pub .venue {
-        font-style: italic;
-        opacity: 0.6;
-      }
-      .pub .doi a {
-        color: #FFD700;
-        text-decoration: none;
-      }
-      .pub .doi a:hover {
-        text-decoration: underline;
-      }
-      /* ====================================
-         END NEW STYLES
-         ==================================== */
-
-      /* ------- Top navigation (Scrolling with content) ------- */
+      /* ------- Top navigation (fixed) ------- */
       .topnav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
         width: 100%;
-        z-index: 10003; 
+        z-index: 10003;
+
         background: rgba(0,0,0,0.15);
         border-bottom: 1px solid rgba(255,255,255,0.5);
         backdrop-filter: saturate(120%) blur(6px);
@@ -213,19 +143,18 @@
       }
 
       /* Mobile nav */
+      .nav-backdrop {
+        display: none;
+      }
+
       @media (max-width: 768px) {
-        /* Add a rule to position the mobile menu correctly now that .topnav is not fixed */
-        .menu {
-            top: 0; 
-            height: 100vh; 
-        }
-        
         .menu-toggle {
           display: flex;
         }
 
         .menu {
-          position: fixed; 
+          position: fixed;
+          top: 60px;
           right: 0;
           bottom: 0;
           width: 78%;
@@ -239,10 +168,6 @@
           z-index: 10002;
         }
 
-        .topnav.open .menu {
-            top: 0; 
-        }
-        
         .menu a {
           font-size: 1.1em;
           border-bottom: none;
@@ -288,8 +213,12 @@
         }
       }
 
-      /* ------- Footer (Scrolling with content) ------- */
+      /* ------- Footer (fixed bottom bar) ------- */
       #footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         width: 100%;
 
         padding: 25px 0;
@@ -362,6 +291,7 @@
   </head>
 
   <body class="is-preload">
+    <!-- Top navigation -->
     <nav class="topnav" role="navigation" aria-label="Primary">
       <div class="inner">
         <div class="brand">
@@ -371,10 +301,12 @@
           </a>
         </div>
 
+        <!-- Hamburger / Close Toggle -->
         <button class="menu-toggle" aria-expanded="false" aria-label="Open menu" title="Open menu">
           <i class="fa-solid fa-bars"></i>
         </button>
 
+        <!-- Menu -->
         <ul id="primary-menu" class="menu">
           <li><a href="team.html">Team</a></li>
           <li><a href="projects.html">Projects</a></li>
@@ -388,6 +320,7 @@
     </nav>
     <div class="nav-backdrop" hidden></div>
 
+    <!-- Empty content area (template) -->
     <main class="container" id="content">
       
       <header id="header">
@@ -649,8 +582,11 @@
           </li>
         </ul>
       </section>
-      
-    </main>
+
+
+      </main>
+
+    <!-- Footer -->
     <footer id="footer">
       <ul class="icons">
         <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
@@ -664,6 +600,7 @@
       </ul>
     </footer>
 
+    <!-- Mobile menu JS -->
     <script>
       (function () {
         const nav = document.querySelector('.topnav');
@@ -717,7 +654,3 @@
         });
       })();
     </script>
-
-    <script src="assets/js/main.js"></script>
-  </body>
-</html>
