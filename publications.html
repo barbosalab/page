@@ -21,9 +21,9 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        /* leave room for fixed top and bottom bars */
+        /* leave room for fixed top bar only (footer is now part of the flow) */
         padding-top: 60px;   /* nav height */
-        padding-bottom: 90px;/* footer height (approx) */
+        padding-bottom: 0; /* REMOVED padding for fixed footer */
         box-sizing: border-box;
       }
 
@@ -36,13 +36,13 @@
         box-sizing: border-box;
       }
 
-      /* ------- Top navigation (fixed) ------- */
+      /* ------- Top navigation (fixed and full wide) ------- */
       .topnav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        width: 100%;
+        width: 100%; /* Ensures full width */
         z-index: 10003;
 
         background: rgba(0,0,0,0.15);
@@ -213,13 +213,11 @@
         }
       }
 
-      /* ------- Footer (fixed bottom bar) ------- */
+      /* ------- Footer (static bottom bar) ------- */
       #footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
+        position: static; /* CHANGED from fixed to static for in-flow behavior */
+        /* Removed bottom, left, right to prevent fixed positioning */
+        width: 100%; /* Ensures full width */
 
         padding: 25px 0;
         background: rgba(0,0,0,0.15);
@@ -231,7 +229,7 @@
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
-        z-index: 10001;
+        z-index: auto; /* Changed z-index from 10001 to auto */
       }
 
       #footer ul {
@@ -291,7 +289,6 @@
   </head>
 
   <body class="is-preload">
-    <!-- Top navigation -->
     <nav class="topnav" role="navigation" aria-label="Primary">
       <div class="inner">
         <div class="brand">
@@ -301,12 +298,10 @@
           </a>
         </div>
 
-        <!-- Hamburger / Close Toggle -->
         <button class="menu-toggle" aria-expanded="false" aria-label="Open menu" title="Open menu">
           <i class="fa-solid fa-bars"></i>
         </button>
 
-        <!-- Menu -->
         <ul id="primary-menu" class="menu">
           <li><a href="team.html">Team</a></li>
           <li><a href="projects.html">Projects</a></li>
@@ -320,7 +315,6 @@
     </nav>
     <div class="nav-backdrop" hidden></div>
 
-    <!-- Empty content area (template) -->
     <main class="container" id="content">
       
       <header id="header">
@@ -586,7 +580,6 @@
 
       </main>
 
-    <!-- Footer -->
     <footer id="footer">
       <ul class="icons">
         <li><a href="https://twitter.com/barbosaresearch" target="_blank" class="icon brands fa-x-twitter"><span class="label">X</span></a></li>
@@ -600,7 +593,6 @@
       </ul>
     </footer>
 
-    <!-- Mobile menu JS -->
     <script>
       (function () {
         const nav = document.querySelector('.topnav');
